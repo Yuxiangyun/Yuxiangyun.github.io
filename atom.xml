@@ -6,7 +6,7 @@
   <link href="https://yuxiangyun.top/atom.xml" rel="self"/>
   
   <link href="https://yuxiangyun.top/"/>
-  <updated>2024-02-02T13:01:43.320Z</updated>
+  <updated>2024-02-08T07:34:42.253Z</updated>
   <id>https://yuxiangyun.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的第一篇博客🎉</title>
+    <link href="https://yuxiangyun.top/2024/02/08/post/"/>
+    <id>https://yuxiangyun.top/2024/02/08/post/</id>
+    <published>2024-02-08T07:04:42.000Z</published>
+    <updated>2024-02-08T07:34:42.253Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="终于"><a href="#终于" class="headerlink" title="终于"></a>终于</h1><p>折腾了几天，断断续续的终于配置好了我的博客，就让这一篇成为开始吧。应该我能保持一个月至少更新一次吧，此站域名长期不会变化。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;终于&quot;&gt;&lt;a href=&quot;#终于&quot; class=&quot;headerlink&quot; title=&quot;终于&quot;&gt;&lt;/a&gt;终于&lt;/h1&gt;&lt;p&gt;折腾了几天，断断续续的终于配置好了我的博客，就让这一篇成为开始吧。应该我能保持一个月至少更新一次吧，此站域名长期不会变化。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://yuxiangyun.top/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
