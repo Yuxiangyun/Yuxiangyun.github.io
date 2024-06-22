@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Here is Yu👋</title>
+  <title>HAVE A NICE DAY!</title>
   
   <subtitle>记录一下，随便发发</subtitle>
   <link href="https://yuxiangyun.top/atom.xml" rel="self"/>
   
   <link href="https://yuxiangyun.top/"/>
-  <updated>2024-06-22T12:40:37.442Z</updated>
+  <updated>2024-06-15T07:15:39.927Z</updated>
   <id>https://yuxiangyun.top/</id>
   
   <author>
@@ -15,19 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>我的高考</title>
-    <link href="https://yuxiangyun.top/2024/06/22/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/"/>
-    <id>https://yuxiangyun.top/2024/06/22/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/</id>
-    <published>2024-06-22T12:40:37.000Z</published>
-    <updated>2024-06-22T12:40:37.442Z</updated>
-    
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>记一次引流手术</title>
