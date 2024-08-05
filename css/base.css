@@ -600,8 +600,4 @@ a:hover {
   margin-bottom: 50px;
 }
 
-.emoji {
-  background: none;
-  color: initial; /* 保持原始颜色 */
-  font-size: inherit; /* 保持一致的字体大小 */
-}
+
