@@ -1,34 +1,97 @@
+/* 外层时间轴容器 */
 .timeline {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
     gap: 1.5rem;
-    padding: 1rem 0;
   }
+  
+  /* 每条动态的卡片样式 */
+  .timeline-item {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 1.25rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem 1.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  /* 悬浮时动画 */
+  .timeline-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 时间（几天前）标签 */
+/* 时间信息区域（左上角） */
+/* 时间标签（自然排版） */
+.timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+  
+    /* 新增头像样式作为伪元素 */
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  
+  .timeline-meta::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.75rem;
+    height: 1.75rem;
+    background-image: url('https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/doc/241744635062_.pic_thumb.jpg'); /* 👈 替换为你的头像路径 */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
   
   .timeline-item {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 1rem 1.5rem;
-    transition: all 0.3s ease;
+    position: relative;
   }
   
-  .timeline-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-  }
   
-  .timeline-date {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
   
+  /* 内容区域 */
   .timeline-content {
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.8;
     color: #333;
+    word-break: break-word;
+  }
+  
+  /* 插图支持 */
+  .timeline-content img {
+    max-width: 100%;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  /* 手机端优化 */
+  @media screen and (max-width: 600px) {
+    .timeline-item {
+      padding: 1.25rem 1rem;
+      border-radius: 1rem;
+    }
+    .timeline-content {
+      font-size: 1rem;
+    }
+    .timeline-date {
+      font-size: 0.75rem;
+    }
   }
   
