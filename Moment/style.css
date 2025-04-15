@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 2rem 1.5rem;
-    gap: 1.5rem;
+    gap: 2rem; /* 增加条目之间的间距 */
     max-width: 100%;
 }
 
@@ -34,6 +34,7 @@ body {
     position: relative;
     margin: 0 auto;
     overflow-wrap: break-word;
+    margin-bottom: 1.5rem; /* 增加底部外边距，防止条目之间重叠 */
 }
 
 /* 悬浮动画效果 */
@@ -113,6 +114,7 @@ body {
         width: calc(100% - 1rem);
         padding: 1.25rem 1rem;
         border-radius: 1rem;
+        margin-bottom: 1rem; /* 增加底部外边距，防止条目之间重叠 */
     }
 
     .timeline-meta {
