@@ -136,3 +136,30 @@ body {
         font-size: 0.95rem;
     }
 }
+
+.moment-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 2rem 0 1rem 0;
+}
+.moment-pagination button {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.moment-pagination button:disabled {
+  color: #aaa;
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+.moment-pagination span {
+  font-size: 1rem;
+  color: #666;
+}
