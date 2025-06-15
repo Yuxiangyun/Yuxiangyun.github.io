@@ -1,1215 +1,343 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://pic.imgdb.cn/item/669cf486d9c307b7e9ba2659.jpg">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://pic.imgdb.cn/item/669cf486d9c307b7e9ba2659.jpg">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://pic.imgdb.cn/item/669cf486d9c307b7e9ba2659.jpg">
-  <link rel="mask-icon" href="https://pic.imgdb.cn/item/669cf486d9c307b7e9ba2659.jpg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans Simplified Chinese:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yuxiangyun.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false,"avatar":"https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/doc/gd.jpg","url":"https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/doc/gd.jpg","rounded":false,"rotated":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="这里是Yu的个人博客站点">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xIANGYUN666">
-<meta property="og:url" content="https://yuxiangyun.top/">
-<meta property="og:site_name" content="xIANGYUN666">
-<meta property="og:description" content="这里是Yu的个人博客站点">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="祥云">
-<meta property="article:tag" content="博客 喻祥云 yuxiangyun">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://yuxiangyun.top/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>xIANGYUN666</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6LPER6VZX"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-H6LPER6VZX');
-      }
-    </script>
+  <title>鲨鱼面包🦈</title>
+  
+  <link rel="canonical" href="https://yuxiangyun.top/">
+  
+  <meta name="description" content="这里是Yu的个人博客站点">
+  
+  
+  <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+  
+  <meta name="author" content="祥云">
+  
+  
+  <meta property="og:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
+  
+  
+  <meta property="og:site_name" content="鲨鱼面包🦈" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="鲨鱼面包🦈" />
+  
+  <meta property="og:description" content="这里是Yu的个人博客站点">
+  
+  <meta property="og:url" content="https://yuxiangyun.top/" />
 
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="鲨鱼面包🦈">
+  
+  <meta name="twitter:description" content="这里是Yu的个人博客站点">
+  
+  
+  
+  <meta name="twitter:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
+  
+  
+  <meta name="twitter:url" content="https://yuxiangyun.top/" />
 
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
 
+  
+<link rel="stylesheet" href="/css/skeleton.css">
 
-  <noscript>
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://pic.imgdb.cn/item/669cf486d9c307b7e9ba2659.jpg">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
   }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
 
-<link rel="alternate" href="/atom.xml" title="xIANGYUN666" type="application/atom+xml">
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="鲨鱼面包🦈" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🦈</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>⚡️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
   </div>
 
-  <div class="site-meta">
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      鲨鱼面包
+    </h1>
+  </div>
 
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">xIANGYUN666</h1>
-      <span class="logo-line-after"><i></i></span>
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/Moment" class="ml">Moments</a>
+          
+        
+          
+          <a href="/links" class="ml">Friends</a>
+          
+        
+        
+          
+            <a href="mailto:3207904833@qq.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+          <div class="row">
+  <div class="column">
+    <!-- Main information, edit it on theme/_config.yml -->
+    <h2 class="mb-2">&quot;If you&#39;re busy, You have no time to be unhappy.👾&quot;</h2>
+    <p>C++,C#,学习中...</p>
+    <p></p>
+  </div>
+</div>
+
+<h3>Recent Posts</h3>
+
+
+<div class="row">
+
+  <div class="three columns left lit">
+    <p class="bottom">2025年4月7日</p>
+  </div>
+  <div class="nine columns left mb-3">
+    <a href="/2025/04/07/Recentevent/" >
+      
+        三月
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Stay Hungry, Stay Foolish</p>
   </div>
+</div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+<div class="row">
+
+  <div class="three columns left lit">
+    <p class="bottom">2024年12月17日</p>
+  </div>
+  <div class="nine columns left mb-3">
+    <a href="/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" >
+      
+        2024年终总结丨Don't Look Back In Anger
+      
+    </a>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="three columns left lit">
+    <p class="bottom">2024年11月13日</p>
+  </div>
+  <div class="nine columns left mb-3">
+    <a href="/2024/11/13/weekly-review2024-11-13/" >
+      
+        「周结#3」谁说这天气烂的啊，这天气太棒了。
+      
+    </a>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="three columns left lit">
+    <p class="bottom">2024年11月6日</p>
+  </div>
+  <div class="nine columns left mb-3">
+    <a href="/2024/11/06/weekly-review2024-11-6/" >
+      
+        「周结#2」希望每天都能睡好
+      
+    </a>
   </div>
 </div>
 
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-moments">
-
-    <a href="/Moment/" rel="section"><i class="fa fa-heart fa-fw"></i>Moments</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-友链">
-
-    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a>
-
-  </li>
-        <li class="menu-item menu-item-开往">
-
-    <a href="https://www.travellings.cn/go.html" rel="noopener" target="_blank"><i class="fa fa-subway fa-fw"></i>开往</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2025/04/07/Recentevent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/04/07/Recentevent/" class="post-title-link" itemprop="url">三月</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-04-07 00:31:30 / 修改时间：19:44:30" itemprop="dateCreated datePublished" datetime="2025-04-07T00:31:30+08:00">2025-04-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/" itemprop="url" rel="index"><span itemprop="name">最近的事~</span></a>
-                </span>
-            </span>
-
-          
+<h4> <a href="/archives">All Posts</a></h4>
 
         </div>
-      </header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="生病"><a href="#生病" class="headerlink" title="生病"></a>生病</h1><p>也不知道是不是和冬天这个节气犯冲，每年冬天老是要跑医院。<br>这次生病挺严重了，天天往返医院。当时的心态真的变了许多，医院还是要少去，呆久了人都要E了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/04/07/Recentevent/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
+        <div class="row mt-2">
   
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2024年终总结丨Don't Look Back In Anger</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-12-17 20:07:54 / 修改时间：22:07:58" itemprop="dateCreated datePublished" datetime="2024-12-17T20:07:54+08:00">2024-12-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=4226232&auto=0&height=66"></iframe>
-
-<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>这一年总算是过去了，写一篇来记录和总结一下自己。这一年的最大的主题是高考，大人们经常说这么一句话，你就抱着你那《五年高考三年模拟》偷着乐吧，等你工作就知道读书有多爽了，这一点我部分赞同，因为高三下期排除在外。</p>
-<p>今年是值得记录的一年，就码一点字。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/11/13/weekly-review2024-11-13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/11/13/weekly-review2024-11-13/" class="post-title-link" itemprop="url">「周结#3」谁说这天气烂的啊，这天气太棒了。</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-11-13 22:29:54" itemprop="dateCreated datePublished" datetime="2024-11-13T22:29:54+08:00">2024-11-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-14 12:01:40" itemprop="dateModified" datetime="2024-11-14T12:01:40+08:00">2024-11-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/" itemprop="url" rel="index"><span itemprop="name">每周回顾</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/banner3.png"></p>
-<blockquote>
-<p>背光拍下来的的花🌸</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/11/13/weekly-review2024-11-13/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/11/06/weekly-review2024-11-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/11/06/weekly-review2024-11-6/" class="post-title-link" itemprop="url">「周结#2」希望每天都能睡好</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-11-06 21:44:09 / 修改时间：22:33:04" itemprop="dateCreated datePublished" datetime="2024-11-06T21:44:09+08:00">2024-11-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/" itemprop="url" rel="index"><span itemprop="name">每周回顾</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/weekly-banner2.png"></p>
-<blockquote>
-<p>出门上自习时候拍到的朝霞🌅</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/11/06/weekly-review2024-11-6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/10/30/weekly-review2024-10-30/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/10/30/weekly-review2024-10-30/" class="post-title-link" itemprop="url">「周结#1」今天是一个值得庆祝的日子。</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-10-30 22:50:00 / 修改时间：23:35:24" itemprop="dateCreated datePublished" datetime="2024-10-30T22:50:00+08:00">2024-10-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/" itemprop="url" rel="index"><span itemprop="name">每周回顾</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/w1.png"></p>
-<h1 id="新的开始"><a href="#新的开始" class="headerlink" title="新的开始"></a>新的开始</h1><p>今天刷Rss的时候，看见一个站主每周一次更新自己的动态，记录下自己每一周的回顾与心得，我觉得很有意思。今天晚自习的时候，我想起来我是不是也可以自己尝试一下这种形式，记录下我的生活以及反思呢？于是便有了这个开始！每周的周三，我都会花一点时间来整理一下这七天所发生的事情，可能有某个确定的主题，也可能只是琐碎的片段。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/10/30/weekly-review2024-10-30/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/10/21/donebetter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/10/21/donebetter/" class="post-title-link" itemprop="url">得治治我的拖延症</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-10-21 12:59:54" itemprop="dateCreated datePublished" datetime="2024-10-21T12:59:54+08:00">2024-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-18 09:59:56" itemprop="dateModified" datetime="2025-01-18T09:59:56+08:00">2025-01-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/" itemprop="url" rel="index"><span itemprop="name">最近的事~</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E6%8B%96%E5%BB%B6/tuoyan.jpg"></p>
-<h1 id="Done-is-better-than-perfect"><a href="#Done-is-better-than-perfect" class="headerlink" title="Done is better than perfect"></a>Done is better than perfect</h1><p>不知道从什么时候开始，变得喜欢给自己找<strong>借口</strong>。</p>
-<p>在小的时候，如果想要什么事情我总是能完全专注在其中。比如我要玩一个游戏但是却要配置许许多多东西，不知道能不能完成，但我还是会一直钻研，我想做个视频发到网站，我就会立马去下载剪辑软件录制素材。正是因为小时候这种对事情的态度，对现在的我可能还造成了不小的影响。</p>
-<p>而现在我却很难这样二话不说，毫不忧虑的开始做一件事。这背后可能有很多的原因，比如说时间变得更紧张了，对许多事情失去了好奇心。但这些原因不是阻挡我某时某刻认真去完成某件事的直接原因，使得我拖延的是我的内心一直在和我说自己说<strong>“这件事是不是可以做的更好？”</strong>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/10/21/donebetter/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/10/15/cppnote/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/10/15/cppnote/" class="post-title-link" itemprop="url">CPP笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-10-15 13:05:00" itemprop="dateCreated datePublished" datetime="2024-10-15T13:05:00+08:00">2024-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-27 00:55:26" itemprop="dateModified" datetime="2024-10-27T00:55:26+08:00">2024-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NOTE/" itemprop="url" rel="index"><span itemprop="name">NOTE</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/CPP%E7%AC%94%E8%AE%B0/cppnote_page.jpg"></p>
-<p>本篇主要在于记录一下我学CPP的过程，内容基于自己的理解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/10/15/cppnote/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/" class="post-title-link" itemprop="url">大学军训</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-19 21:46:59" itemprop="dateCreated datePublished" datetime="2024-09-19T21:46:59+08:00">2024-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-27 00:52:00" itemprop="dateModified" datetime="2024-10-27T00:52:00+08:00">2024-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/" itemprop="url" rel="index"><span itemprop="name">最近的事~</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%86%9B%E8%AE%AD/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD.jpg"></p>
-<div class="note success">
-            <p>军训从小到大也经历了许多回，初一高一高三，每次军训都给我留下了很深的印象，这次大学开学军训🥲也不例外 </p>
-          </div>
-
-
-<h1 id="周期长，时间很难熬"><a href="#周期长，时间很难熬" class="headerlink" title="周期长，时间很难熬"></a>周期长，时间很难熬</h1><p>这一点很值得一提，初中高中军训周期都很短，7到14d，这个时间属于刚好不用吃很多苦头就能留下难忘经历的训练周期</p>
-<p>而大学军训有21d，还有十天结束我已经十分疲倦了。早上五点半起床晚上十一点半入睡，我的睡眠需求在7.5➕，加上训练，真的难受</p>
-<p>每天来回路上都是鸟语花香，打哈切从早到晚，睡眠不足真的很煎熬。洗完衣服玩会手机就能闭眼睡着</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/09/09/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/09/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6/" class="post-title-link" itemprop="url">初见大学</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-09 22:35:03" itemprop="dateCreated datePublished" datetime="2024-09-09T22:35:03+08:00">2024-09-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-27 01:00:56" itemprop="dateModified" datetime="2024-10-27T01:00:56+08:00">2024-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/" itemprop="url" rel="index"><span itemprop="name">最近的事~</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6.jpg"></p>
-<h1 id="开学前"><a href="#开学前" class="headerlink" title="开学前"></a>开学前</h1><div class="note success">
-            <p>这个暑假是上学有史以来最长的暑假。  </p>
-          </div>
-
-
-<p>从6月9日高考结束到开学9月1日，三个月的假期几乎没有计划地就度过了，每天吃喝睡然后刷抖音。夏天全国都很热🥵，偶尔出去玩一会都热的非常难受，尤其在长沙！</p>
-<p>所以假期到后面便开始呈现一种虚无之感了，可能对我这样玩太久也会很难受吧哈哈。</p>
-<p>临近开学便开始期待了，期待高三想象中的大学生活（主要是美好的一面），以及到一个新的环境也会让我兴奋。所以我还是很期待开学的，但中间也曾担忧会被分到8人寝室，所以还有一丝开盲盒的感觉。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/09/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yuxiangyun.top/2024/08/26/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="祥云">
-      <meta itemprop="description" content="这里是Yu的个人博客站点">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xIANGYUN666">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/26/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">英语语法入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-26 12:00:00" itemprop="dateCreated datePublished" datetime="2024-08-26T12:00:00+08:00">2024-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-26 23:07:10" itemprop="dateModified" datetime="2024-10-26T23:07:10+08:00">2024-10-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NOTE/" itemprop="url" rel="index"><span itemprop="name">NOTE</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="英语语法入门"><a href="#英语语法入门" class="headerlink" title="英语语法入门"></a>英语语法入门</h1><p>关于英语语法一些基本要素的笔记,自己整理一下.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/26/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">祥云</p>
-  <div class="site-description" itemprop="description">这里是Yu的个人博客站点</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">15</span>
-          <span class="site-state-item-name">日志</span>
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+        
+        at <a href="https://en.wikipedia.org/wiki/湖南" target="_blank" rel="noreferrer">湖南</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
 </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/yuxiangyun" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuxiangyun" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
 
       </div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 2023 – 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">祥云</span>
-</div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
   </div>
+  <script src="/js/nanobar.min.js"></script>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
     };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-
-    
-
-  
-
-
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
+
 </html>
