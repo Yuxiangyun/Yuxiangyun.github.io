@@ -11,7 +11,7 @@
   <meta charset="utf-8">
 
   
-  <title>QuitTracker - 祥云</title>
+  <title>Quit Smoking Tracker - 祥云</title>
   
   <link rel="canonical" href="https://yuxiangyun.top/tracker/">
   
@@ -26,14 +26,14 @@
   
   <meta property="og:site_name" content="鲨鱼面包🦈" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="QuitTracker - 祥云" />
+  <meta property="og:title" content="Quit Smoking Tracker - 祥云" />
   
   <meta property="og:description" content="undefined">
   
   <meta property="og:url" content="https://yuxiangyun.top/tracker/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="QuitTracker - 祥云">
+  <meta name="twitter:title" content="Quit Smoking Tracker - 祥云">
   
   <meta name="twitter:description" content="undefined">
   
@@ -181,11 +181,11 @@
         <a href="/">Home</a>
         
           
-          <a href="/links" class="ml">Friends</a>
+          <a href="/About" class="ml">About</a>
           
         
           
-          <a href="/tracker" class="ml">Tracker</a>
+          <a href="/links" class="ml">Friends</a>
           
         
         
@@ -196,423 +196,135 @@
 </div>
 
         <div class="trans">
-            <h2>QuitTracker</h2>
+            <h2>Quit Smoking Tracker</h2>
 
-  <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>戒烟时间</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+.quit-tracker-container {
+  font-family: inherit;
+  color: inherit;
+  background-color: var(--content-bg, #fff);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
-            background-color: #fbfbfd;
-            color: #1d1d1f;
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+.quit-tracker-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 
+.quit-tracker-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
 
-        .home-button:hover {
-            background: #f5f5f7;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
+.quit-tracker-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
 
-        .home-button:active {
-            transform: translateY(0);
-        }
+.quit-time-unit {
+  flex: 1 1 100px;
+  text-align: center;
+  background: var(--card-bg, #f5f5f5);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: 0.3s ease;
+}
 
-        .home-icon {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
+.quit-time-value {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
 
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 60px 22px 0;
-            width: 100%;
-        }
+.quit-time-label {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: uppercase;
+}
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+@media (max-width: 768px) {
+  .quit-time-value { font-size: 2rem; }
+}
 
-        .hero-headline {
-            font-size: 56px;
-            line-height: 1.07143;
-            font-weight: 600;
-            letter-spacing: -0.005em;
-            margin-bottom: 6px;
-            color: #1d1d1f;
-        }
+@media (max-width: 480px) {
+  .quit-tracker-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+</style>
 
-        .hero-subheadline {
-            font-size: 28px;
-            line-height: 1.14286;
-            font-weight: 400;
-            letter-spacing: 0.007em;
-            color: #86868b;
-        }
+<div class="quit-tracker-container">
+  <h2 class="quit-tracker-title">最后一根🚬</h2>
+  <p class="quit-tracker-subtitle">于 2025 年 6 月 12 日起</p>
 
-        .stats-section {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 64px 48px;
-            border: 1px solid #d2d2d7;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .stats-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .stats-title {
-            font-size: 32px;
-            line-height: 1.125;
-            font-weight: 600;
-            letter-spacing: 0.004em;
-            color: #1d1d1f;
-            margin-bottom: 8px;
-        }
-
-        .stats-subtitle {
-            font-size: 19px;
-            line-height: 1.21053;
-            font-weight: 400;
-            letter-spacing: 0.012em;
-            color: #86868b;
-        }
-
-        .time-display {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-        }
-
-        .time-unit {
-            text-align: center;
-            padding: 24px 16px;
-            border-radius: 12px;
-            background: #f5f5f7;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .time-unit:hover {
-            background: #ebebed;
-            transform: translateY(-2px);
-        }
-
-        .time-value {
-            font-size: 72px;
-            line-height: 1.03125;
-            font-weight: 200;
-            letter-spacing: -0.009em;
-            color: #1d1d1f;
-            margin-bottom: 12px;
-            font-variant-numeric: tabular-nums;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .time-label {
-            font-size: 17px;
-            line-height: 1.23536;
-            font-weight: 500;
-            letter-spacing: -0.022em;
-            color: #86868b;
-            text-transform: uppercase;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1068px) {
-            .container {
-                padding: 60px 40px 0;
-            }
-            
-            .hero-headline {
-                font-size: 48px;
-            }
-            
-            .hero-subheadline {
-                font-size: 24px;
-            }
-            
-            .stats-section {
-                padding: 48px 32px;
-            }
-            
-            .time-display {
-                gap: 32px;
-            }
-            
-            .time-value {
-                font-size: 64px;
-            }
-        }
-
-        @media (max-width: 734px) {
-            .container {
-                padding: 80px 20px 20px;
-            }
-
-            .home-button {
-                top: 16px;
-                left: 16px;
-                padding: 10px 14px;
-                font-size: 14px;
-            }
-
-            .home-icon {
-                width: 16px;
-                height: 16px;
-            }
-            
-            .hero-section {
-                margin-bottom: 40px;
-            }
-            
-            .hero-headline {
-                font-size: 32px;
-                line-height: 1.125;
-            }
-            
-            .hero-subheadline {
-                font-size: 19px;
-                line-height: 1.21053;
-            }
-            
-            .stats-section {
-                padding: 32px 20px;
-                border-radius: 16px;
-            }
-            
-            .stats-header {
-                margin-bottom: 40px;
-            }
-            
-            .stats-title {
-                font-size: 24px;
-            }
-
-            .stats-subtitle {
-                font-size: 17px;
-            }
-            
-            .time-display {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .time-value {
-                font-size: 40px;
-            }
-            
-            .time-unit {
-                padding: 20px 12px;
-                border-radius: 10px;
-            }
-
-            .time-label {
-                font-size: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 80px 16px 16px;
-            }
-
-            .home-button {
-                top: 12px;
-                left: 12px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-
-            .hero-headline {
-                font-size: 28px;
-            }
-
-            .hero-subheadline {
-                font-size: 17px;
-            }
-
-            .stats-section {
-                padding: 28px 16px;
-            }
-
-            .stats-title {
-                font-size: 22px;
-            }
-            
-            .time-display {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            
-            .time-unit {
-                padding: 24px 16px;
-            }
-            
-            .time-value {
-                font-size: 48px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .time-value {
-                font-size: 42px;
-            }
-
-            .stats-title {
-                font-size: 20px;
-            }
-
-            .hero-headline {
-                font-size: 24px;
-            }
-        }
-
-        /* Animation for number changes */
-        @keyframes numberChange {
-            0% { transform: translateY(-10px); opacity: 0.7; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        .time-value.updated {
-            animation: numberChange 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Safe area for devices with notches */
-        @supports (padding: max(0px)) {
-            .home-button {
-                top: max(20px, env(safe-area-inset-top, 20px));
-                left: max(20px, env(safe-area-inset-left, 20px));
-            }
-
-            @media (max-width: 734px) {
-                .home-button {
-                    top: max(16px, env(safe-area-inset-top, 16px));
-                    left: max(16px, env(safe-area-inset-left, 16px));
-                }
-            }
-
-            @media (max-width: 480px) {
-                .home-button {
-                    top: max(12px, env(safe-area-inset-top, 12px));
-                    left: max(12px, env(safe-area-inset-left, 12px));
-                }
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <section class="hero-section">
-            <h1 class="hero-headline">戒烟这一块</h1>
-            <p class="hero-subheadline">🚬</p>
-        </section>
-
-        <section class="stats-section">
-            <div class="stats-header">
-                <h2 class="stats-title">开始时间</h2>
-                <p class="stats-subtitle">自 2025年6月12日 开始</p>
-            </div>
-
-            <div class="time-display">
-                <div class="time-unit">
-                    <div class="time-value" id="days">0</div>
-                    <div class="time-label">天</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-value" id="hours">0</div>
-                    <div class="time-label">小时</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-value" id="minutes">0</div>
-                    <div class="time-label">分钟</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-value" id="seconds">0</div>
-                    <div class="time-label">秒</div>
-                </div>
-            </div>
-        </section>
+  <div class="quit-tracker-grid">
+    <div class="quit-time-unit">
+      <div class="quit-time-value" id="days">0</div>
+      <div class="quit-time-label">天</div>
     </div>
+    <div class="quit-time-unit">
+      <div class="quit-time-value" id="hours">0</div>
+      <div class="quit-time-label">小时</div>
+    </div>
+    <div class="quit-time-unit">
+      <div class="quit-time-value" id="minutes">0</div>
+      <div class="quit-time-label">分钟</div>
+    </div>
+    <div class="quit-time-unit">
+      <div class="quit-time-value" id="seconds">0</div>
+      <div class="quit-time-label">秒</div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        let previousValues = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+<script>
+let prev = { days: -1, hours: -1, minutes: -1, seconds: -1 };
 
-        function updateTime() {
-            // 戒烟开始时间：2025年6月12日晚上0点（北京时间）
-            const quitDate = new Date('2025-06-12T00:00:00+08:00');
-            const now = new Date();
+function updateQuitTime() {
+  const quitTime = new Date('2025-06-12T00:00:00+08:00');
+  const now = new Date();
+  const diff = now - quitTime;
 
-            // 计算时间差（毫秒）
-            const timeDiff = now.getTime() - quitDate.getTime();
+  if (diff < 0) return;
 
-            if (timeDiff < 0) {
-                // 如果还没到戒烟开始时间
-                updateDisplay('days', 0);
-                updateDisplay('hours', 0);
-                updateDisplay('minutes', 0);
-                updateDisplay('seconds', 0);
-                return;
-            }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
 
-            // 转换为天、小时、分钟、秒
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  renderTime('days', days);
+  renderTime('hours', hours);
+  renderTime('minutes', minutes);
+  renderTime('seconds', seconds);
+}
 
-            // 更新显示
-            updateDisplay('days', days);
-            updateDisplay('hours', hours);
-            updateDisplay('minutes', minutes);
-            updateDisplay('seconds', seconds);
-        }
+function renderTime(id, value) {
+  const el = document.getElementById(id);
+  if (prev[id] !== value) {
+    el.textContent = value;
+    el.classList.add('pulse');
+    setTimeout(() => el.classList.remove('pulse'), 200);
+    prev[id] = value;
+  }
+}
 
-        function updateDisplay(unit, value) {
-            const element = document.getElementById(unit);
-            
-            // 如果值发生变化，添加动画效果
-            if (previousValues[unit] !== value) {
-                element.classList.add('updated');
-                setTimeout(() => {
-                    element.classList.remove('updated');
-                }, 300);
-                previousValues[unit] = value;
-            }
-            
-            element.textContent = value;
-        }
+updateQuitTime();
+setInterval(updateQuitTime, 1000);
+</script>
 
-        // 立即更新一次
-        updateTime();
-
-        // 每秒更新一次
-        setInterval(updateTime, 1000);
-    </script>
-</body>
-</html>
 
         </div>
 
