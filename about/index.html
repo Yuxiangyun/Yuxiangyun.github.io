@@ -11,7 +11,7 @@
   <meta charset="utf-8">
 
   
-  <title>关于页 - 祥云</title>
+  <title> - 祥云</title>
   
   <link rel="canonical" href="https://yuxiangyun.top/about/">
   
@@ -26,14 +26,14 @@
   
   <meta property="og:site_name" content="鲨鱼面包🦈" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="关于页 - 祥云" />
+  <meta property="og:title" content=" - 祥云" />
   
   <meta property="og:description" content="undefined">
   
   <meta property="og:url" content="https://yuxiangyun.top/about/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="关于页 - 祥云">
+  <meta name="twitter:title" content=" - 祥云">
   
   <meta name="twitter:description" content="undefined">
   
@@ -181,6 +181,10 @@
         <a href="/">Home</a>
         
           
+          <a href="/About" class="ml">About</a>
+          
+        
+          
           <a href="/links" class="ml">Friends</a>
           
         
@@ -196,10 +200,75 @@
 </div>
 
         <div class="trans">
-            <h2>关于页</h2>
+            <h2></h2>
 
-  <h2 id="Hi-There👋"><a href="#Hi-There👋" class="headerlink" title="Hi,There👋"></a>Hi,There👋</h2><p>AI 生成免责声明：本文可能含有人类逻辑错误</p>
+  <div id="typewriter">
+  <span id="typewriter-text"></span><span id="typewriter-cursor">|</span>
+</div>
 
+<script>
+const texts = [
+  "你好🔥，欢迎来到我的博客！",
+  "我现在在湖南常德上大学，星座♒️是水瓶座。",
+  "爱美食🍛，讨厌土豆丝最爱空心菜。",
+  "我会在这记录学习,很高兴认识你👻！"
+
+];
+let textIndex = 0;
+let charIndex = 0;
+let typing = true;
+
+const textElement = document.getElementById('typewriter-text');
+const cursorElement = document.getElementById('typewriter-cursor');
+
+function type() {
+  if (typing) {
+    if (charIndex < texts[textIndex].length) {
+      textElement.textContent += texts[textIndex][charIndex];
+      charIndex++;
+      setTimeout(type, 100);
+    } else {
+      typing = false;
+      setTimeout(erase, 1500);
+    }
+  }
+}
+
+function erase() {
+  if (!typing) {
+    if (charIndex > 0) {
+      textElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, 50);
+    } else {
+      typing = true;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(type, 500);
+    }
+  }
+}
+
+// 光标闪烁
+setInterval(() => {
+  cursorElement.style.visibility = cursorElement.style.visibility === 'hidden' ? 'visible' : 'hidden';
+}, 500);
+
+type();
+</script>
+
+<style>
+#typewriter {
+  font-size: 2.0em;
+  font-family: 'Courier New', Courier, monospace;
+  display: inline-block;
+}
+#typewriter-cursor {
+  font-weight: bold;
+  color:rgb(9, 172, 247);
+  margin-left: 2px;
+  transition: visibility 0.1s;
+}
+</style>
 
         </div>
 
