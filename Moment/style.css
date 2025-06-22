@@ -1,174 +1,28 @@
-/* 全局统一盒模型 */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-/* 防止横向滚动并设置基础字体 */
 body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background-color: #f5f7fa;
-}
-
-/* 外层时间轴容器 - 添加左右padding */
-.timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1.5rem;
-    gap: 2rem; /* 增加条目之间的间距 */
-    max-width: 100%;
-}
-
-/* 每条动态的卡片样式 */
-.timeline-item {
-    width: 100%;
-    max-width: 1100px; /* 再放大卡片宽度 */
-    background: #fff;
-    border-radius: 1.5rem;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-    padding: 3rem 2.8rem; /* 再增大内边距 */
-    transition: all 0.3s ease;
-    position: relative;
-    margin: 0 auto;
-    overflow-wrap: break-word;
-    margin-bottom: 2.8rem; /* 再增大底部间距 */
-    font-size: 1.35rem; /* 整体卡片字体变大 */
-}
-
-body.darkmode .timeline-item {
-    background: #232327;
-    color: #e6e6e6;
-}
-
-/* 悬浮动画效果 */
-.timeline-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* 时间信息区域 - 修改对齐方式 */
-.timeline-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 1.1rem; /* 时间信息字体更大 */
-    color: #666;
-    font-weight: 500;
-    position: relative;
-    padding-left: 2.25rem; /* 调整padding使文字对齐 */
-    min-height: 2.2rem;
-}
-
-/* 头像伪元素 - 调整定位 */
-.timeline-meta::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0; /* 改为从顶部对齐 */
-    width: 1.75rem;
-    height: 1.75rem;
-    background-image: url('https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/doc/gd.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-/* 内容区域 */
-.timeline-content {
-    font-size: 1.25rem; /* 内容字体更大 */
-    line-height: 2.1;
-    color: #222;
-    word-break: break-word;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-body.darkmode .timeline-content {
-    color: #e6e6e6;
-}
-
-/* 处理长链接 */
-.timeline-content a {
-    word-break: break-all;
-}
-
-/* 插图支持 */
-.timeline-content img {
-    max-width: 100%;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* 时间文字 - 调整位置 */
-.timeline-date {
-    font-size: 0.85rem;
-    color: #aaa;
-    margin-bottom: 0.5rem;
-    display: inline-block; /* 改为行内块元素 */
-    vertical-align: middle; /* 垂直居中 */
-}
-
-/* 手机端优化 */
-@media screen and (max-width: 600px) {
-    .timeline {
-        padding: 1.5rem 1rem;
-    }
-
-    .timeline-item {
-        width: calc(100% - 1rem);
-        padding: 1.25rem 1rem;
-        border-radius: 1rem;
-        margin-bottom: 1rem; /* 增加底部外边距，防止条目之间重叠 */
-    }
-
-    .timeline-meta {
-        font-size: 0.8rem;
-        padding-left: 2rem; /* 相应调整 */
-        min-height: 1.5rem; /* 相应调整 */
-    }
-
-    .timeline-meta::before {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    .timeline-date {
-        font-size: 0.75rem;
-    }
-
-    .timeline-content {
-        font-size: 0.95rem;
-    }
-}
-
-.moment-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  margin: 2rem 0 1rem 0;
-}
-.moment-pagination button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.5rem;
-  padding: 0.4rem 1.2rem;
-  font-size: 1rem;
-  color: #333;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  color: #222;
+  margin: 0;
+  padding: 0;
 }
-.moment-pagination button:disabled {
-  color: #aaa;
-  background: #f5f5f5;
-  cursor: not-allowed;
+#moment-main {
+  max-width: 540px;
+  margin: 48px auto 0 auto;
+  padding: 0 18px 60px 18px;
 }
-.moment-pagination span {
-  font-size: 1rem;
-  color: #666;
+#moment-main h2, #moment-main h3 {
+  font-weight: 600;
+  margin: 32px 0 8px 0;
+  font-size: 1.2em;
+  color: #222;
+}
+#moment-main p {
+  font-size: 1.08em;
+  line-height: 1.8;
+  margin: 0 0 18px 0;
+}
+#moment-main hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 28px 0;
 }

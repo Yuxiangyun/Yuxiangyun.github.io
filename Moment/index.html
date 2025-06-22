@@ -11,7 +11,7 @@
   <meta charset="utf-8">
 
   
-  <title>Moments - xiaoyu</title>
+  <title>动态 - xiaoyu</title>
   
   <link rel="canonical" href="https://yuxiangyun.top/Moment/">
   
@@ -26,14 +26,14 @@
   
   <meta property="og:site_name" content="xiaoyu" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Moments - xiaoyu" />
+  <meta property="og:title" content="动态 - xiaoyu" />
   
   <meta property="og:description" content="undefined">
   
   <meta property="og:url" content="https://yuxiangyun.top/Moment/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Moments - xiaoyu">
+  <meta name="twitter:title" content="动态 - xiaoyu">
   
   <meta name="twitter:description" content="undefined">
   
@@ -188,10 +188,6 @@
           <a href="/links" class="ml">Friends</a>
           
         
-          
-          <a href="/tracker" class="ml">Tracker</a>
-          
-        
         
       </div>
     </div>
@@ -200,123 +196,18 @@
 </div>
 
         <div class="trans">
-            <h2>Moments</h2>
+            <h2>动态</h2>
 
-  <link rel="stylesheet" href="/Moment/style.css">
+  <div id="moment-main">
 
-<div class="moment-timeline">
-  <!-- 这里是每条 moment -->
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-06-13">
-        <span class="timeline-date">☀️ 2025-06-13</span>
-      </div>
-      <div class="timeline-content">
-        <p>恐怖期末周：明天考四级，什么都没准备。高数虽然能看的懂但是看了就忘。物理，自然地理，测量学完全没有复习头绪，大概一个科目只有五天时间。多熬夜，少睡觉。
-  </p>
-
-      </div>
-    </div>
-    
-
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-05-17">
-        <span class="timeline-date">☁️ 2025-05-17</span>
-      </div>
-      <div class="timeline-content">
-        <p>重启戒烟🚭项目，越挫越勇了属于是，一定不要失败
-  </p>
-
-      </div>
-    </div>
-    
-
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-05-15">
-        <span class="timeline-date">🌧️ 2025-05-15</span>
-      </div>
-      <div class="timeline-content">
-        <p>这几天非常的悠闲，看了部剧叫做《匹兹堡医护前线》，一季度内容讲急诊科一天的故事。人物都演的好好，每次医生推异丙酚的时候我都很舒服。
-  </p>
-
-      </div>
-    </div>
-    
-
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-05-09">
-        <span class="timeline-date">☀️ 2025-05-09</span>
-      </div>
-      <div class="timeline-content">
-        <p>今天很好，越来越好
-  </p>
-
-      </div>
-    </div>
-    
-
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-04-16">
-        <span class="timeline-date">☀️ 2025-04-16</span>
-      </div>
-      <div class="timeline-content">
-        <p>大学就是一个DeadLine。<br>———— 半夜一点还身负实验报告，PPT，以及小组作业留
-  </p>
-
-      </div>
-    </div>
-    
-
-  
-    <div class="timeline-item">
-      <div class="timeline-meta" data-date="2025-04-14">
-        <span class="timeline-date">☀️ 2025-04-14</span>
-      </div>
-      <div class="timeline-content">
-        <p>今天开了个新页面，用来更新一下自己的动态，灵感来自友链里的小伙伴yotroy啊。<br>这两天开始学Qt了，虽然Cpp的基础还是很薄弱，但还是要硬着头皮往前走。<br>准备跟着别人搓一个聊天软件，又有的学了。
-  </p>
-
-      </div>
-    </div>
-    
+<h2 id="2024-06-01"><a href="#2024-06-01" class="headerlink" title="2024-06-01"></a>2024-06-01</h2><p>今天发布了新博客，超开心！</p>
+<hr>
+<h2 id="2024-05-30"><a href="#2024-05-30" class="headerlink" title="2024-05-30"></a>2024-05-30</h2><p>参加了技术分享会，收获满满。</p>
+<hr>
+<h2 id="2024-05-28"><a href="#2024-05-28" class="headerlink" title="2024-05-28"></a>2024-05-28</h2><p>晨跑五公里，活力满满。</p>
+<hr>
 </div>
-<div class="moment-pagination"></div>
-
-
-<script src="/Moment/moment.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const metas = document.querySelectorAll(".timeline-meta");
-  metas.forEach(meta => {
-    const dateStr = meta.dataset.date; // 从 data-date 获取日期
-    if (!dateStr) return;
-
-    const postDate = new Date(dateStr);
-    const now = new Date();
-    const diffTime = Math.abs(now - postDate);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    let readable = "";
-    if (diffDays === 0) readable = "今天发布";
-    else if (diffDays === 1) readable = "昨天发布";
-    else readable = `${diffDays}天前发布`;
-
-    // 直接更新原始 timeline-meta 的内容
-    const dateSpan = meta.querySelector(".timeline-date");
-    if (dateSpan) {
-      dateSpan.innerHTML = `${dateStr} · ${readable}`;
-    }
-  });
-
-  const items = Array.from(document.querySelectorAll(".timeline-item"));
-});
-</script>
-
+<link rel="stylesheet" href="style.css">
 
 
         </div>
