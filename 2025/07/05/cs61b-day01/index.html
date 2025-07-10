@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - xiaoyu</title>
+  <title>cs61b-day01</title>
   
-  <link rel="canonical" href="https://yuxiangyun.top/archives/2025/">
+  <link rel="canonical" href="https://yuxiangyun.top/2025/07/05/cs61b-day01/">
   
-  <meta name="description" content="这里是Yu的个人博客站点">
+  <meta name="description" content="一个阳光明媚的上午，打开了cs61b这门课。课的设计真的很好，有很多东西可以用来实践，总体实践大于理论。记得第一天为了提交spring 21的作业，还学习了一点git，但是死活过不了评分编译，这个肯定不是我的问题了。 好在天无绝人之路，虽然sp21作业不可以评分，但是sp24的作业都有小小的单元测试">
   
   
   <meta name="keywords" content="博客 喻祥云 yuxiangyun">
@@ -23,28 +23,24 @@
   <meta name="author" content="xiaoyu">
   
   
-  <meta property="og:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
-  
   
   <meta property="og:site_name" content="xiaoyu" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - xiaoyu" />
+  <meta property="og:title" content="cs61b-day01" />
   
-  <meta property="og:description" content="这里是Yu的个人博客站点">
+  <meta property="og:description" content="一个阳光明媚的上午，打开了cs61b这门课。课的设计真的很好，有很多东西可以用来实践，总体实践大于理论。记得第一天为了提交spring 21的作业，还学习了一点git，但是死活过不了评分编译，这个肯定不是我的问题了。 好在天无绝人之路，虽然sp21作业不可以评分，但是sp24的作业都有小小的单元测试">
   
-  <meta property="og:url" content="https://yuxiangyun.top/archives/2025/" />
+  <meta property="og:url" content="https://yuxiangyun.top/2025/07/05/cs61b-day01/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - xiaoyu">
+  <meta name="twitter:title" content="cs61b-day01">
   
-  <meta name="twitter:description" content="这里是Yu的个人博客站点">
-  
-  
-  
-  <meta name="twitter:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
+  <meta name="twitter:description" content="一个阳光明媚的上午，打开了cs61b这门课。课的设计真的很好，有很多东西可以用来实践，总体实践大于理论。记得第一天为了提交spring 21的作业，还学习了一点git，但是死活过不了评分编译，这个肯定不是我的问题了。 好在天无绝人之路，虽然sp21作业不可以评分，但是sp24的作业都有小小的单元测试">
   
   
-  <meta name="twitter:url" content="https://yuxiangyun.top/archives/2025/" />
+  
+  
+  <meta name="twitter:url" content="https://yuxiangyun.top/2025/07/05/cs61b-day01/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -200,80 +196,76 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>cs61b-day01</h2>
 
+  <p>一个阳光明媚的上午，打开了cs61b这门课。课的设计真的很好，有很多东西可以用来实践，总体实践大于理论。记得第一天为了提交spring 21的作业，还学习了一点git，但是死活过不了评分编译，这个肯定不是我的问题了。</p>
+<p>好在天无绝人之路，虽然sp21作业不可以评分，但是sp24的作业都有小小的单元测试，测试通过那一下真的很爽。真羡慕在那里上学的人。</p>
+<p>额头上的痘痘和嘴上的还没有好，脸上给我冒出来两个疼死我了。</p>
+<h2 id="Java的工作流程"><a href="#Java的工作流程" class="headerlink" title="Java的工作流程"></a>Java的工作流程</h2><p>在 Java 中，将程序从 .java 文件转换为可执行文件主要有两个步骤：编译和解释。</p>
+<p>要在 Hello.java 中运行代码，我们首先需要使用命令 javac HelloWorld.java 将代码编译成一个 .class 文件。</p>
+<p>然后，要运行代码，我们需要使用命令 java HelloWorld 。</p>
+<p>终端指令<br>$ javac HelloWorld.java<br>$ java HelloWorld<br>Hello World!</p>
+<h2 id="Java的静态性"><a href="#Java的静态性" class="headerlink" title="Java的静态性"></a>Java的静态性</h2><p>Java和隔壁Cpp一样，都是运行前会检查一下自己有没有错的好孩子，不像隔壁Python只有死到临头才会发现自己错在哪里。</p>
+<p>Java 是一种静态类型语言，这意味着所有变量、参数和方法都必须声明类型。声明之后，类型不能更改。表达式也有隐式类型；例如，表达式 3 + 5 的类型为 int。</p>
+<p>静态方法 Vs 非静态方法</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>静态成员（static）</strong></th>
+<th><strong>非静态成员（实例成员）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属于</td>
+<td>属于<strong>整个类</strong></td>
+<td>属于<strong>某个对象</strong></td>
+</tr>
+<tr>
+<td>访问方式</td>
+<td><code>Dog.something</code></td>
+<td><code>dog.something</code></td>
+</tr>
+<tr>
+<td>内存</td>
+<td>所有对象共享一份</td>
+<td>每个对象都有自己的</td>
+</tr>
+<tr>
+<td>创建时机</td>
+<td>类加载时就存在</td>
+<td>创建对象时才分配</td>
+</tr>
+</tbody></table>
+<p>public class Dog {<br>    &#x2F;&#x2F; ✅ 非静态（实例变量）<br>    String name;<br>    int weight;</p>
+<pre><code>// ✅ 静态变量（类变量）
+static int numDogs = 0;
 
-    <article>
-      <div class="row">
+// ✅ 构造器
+public Dog(String name, int weight) &#123;
+    this.name = name;       // 每个对象自己的名字
+    this.weight = weight;   // 每个对象自己的体重
+    numDogs++;              // 静态变量，记录所有狗的数量
+&#125;
 
-        <div class="three columns left lit">
-          <p class="bottom">2025年7月5日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/07/05/cs61b-day01/" class="">
-            
-              cs61b-day01
-            
-          </a>
-        </div>
-      </div>
-    </article>
+// ✅ 非静态方法（实例方法）
+public void bark() &#123;
+    System.out.println(name + &quot; says: Woof!&quot;);
+&#125;
 
-    <article>
-      <div class="row">
+// ✅ 静态方法（类方法）
+public static int getNumDogs() &#123;
+    return numDogs;
+&#125;
+</code></pre>
+<p>}</p>
+<p>静态方法共享整个类的共有信息，非静态方法用来操作单个对象的状态。</p>
+<p>Java 允许我们定义两种类型的方法：<br>类方法，即静态方法。<br>实例方法，即非静态方法。</p>
+<p>类偶尔需要静态变量。这些变量是类本身固有的属性，而不是实例。<br>静态变量应该使用类名来访问，而不是特定的实例，例如，你应该使用 Dog.binomen ，而不是 d.binomen 。<br>虽然 Java 技术上允许使用实例名访问静态变量，但这是一种不良风格，容易引起混淆，并且在我看来是 Java 设计者的一个错误。</p>
+<h2 id="揭秘Main方法"><a href="#揭秘Main方法" class="headerlink" title="揭秘Main方法"></a>揭秘Main方法</h2><p>public static void main(String[] args)<br>static：它是一个静态方法，不和任何特定实例关联。<br>main： 方法的名称。<br>String[] args：传递给Main的参数。由于 main 是由 Java 解释器本身调用的，而不是由另一个 Java 类调用，因此是解释器的责任提供这些参数。这些参数通常指的是命令行参数。<br>public class ArgsDemo {<br>    public static void main(String[] args) {<br>        System.out.println(args[0]);<br>    }<br>}<br>该程序打印出命令行参数中的第 0 个参数。</p>
 
-        <div class="three columns left lit">
-          <p class="bottom">2025年6月23日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/06/23/story/" class="">
-            
-              《退件：请寄回发件人》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年6月17日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/06/17/bruteforce/" class="">
-            
-              BruteForce算法
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年4月7日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/04/07/Recentevent/" class="">
-            
-              三月
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p> — 2025年7月5日</p>
+  
 
 
         </div>
