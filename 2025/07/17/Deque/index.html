@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>Deque</title>
+  
+  <link rel="canonical" href="https://yuxiangyun.top/2025/07/17/Deque/">
+  
+  <meta name="description" content="什么是DequeDeque（Double Ended Queue）就是 双端队列，特点是：  可以在两端插入元素（头插、尾插）。 可以在两端删除元素（头删、尾删）。用 双向链表（Doubly Linked List） 来实现 Deque，原因是： 双向链表支持在任意位置快速插入和删除，不需要整体移动">
+  
+  
+  <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+  
+  <meta name="author" content="xiaoyu">
+  
+  
+  
+  <meta property="og:site_name" content="xiaoyu" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Deque" />
+  
+  <meta property="og:description" content="什么是DequeDeque（Double Ended Queue）就是 双端队列，特点是：  可以在两端插入元素（头插、尾插）。 可以在两端删除元素（头删、尾删）。用 双向链表（Doubly Linked List） 来实现 Deque，原因是： 双向链表支持在任意位置快速插入和删除，不需要整体移动">
+  
+  <meta property="og:url" content="https://yuxiangyun.top/2025/07/17/Deque/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Deque">
+  
+  <meta name="twitter:description" content="什么是DequeDeque（Double Ended Queue）就是 双端队列，特点是：  可以在两端插入元素（头插、尾插）。 可以在两端删除元素（头删、尾删）。用 双向链表（Doubly Linked List） 来实现 Deque，原因是： 双向链表支持在任意位置快速插入和删除，不需要整体移动">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://yuxiangyun.top/2025/07/17/Deque/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/aquarius.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="xiaoyu" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">👻</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>⚡️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      yu
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+          
+          <a href="/links" class="ml">Friends</a>
+          
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>Deque</h2>
+
+  <h2 id="什么是Deque"><a href="#什么是Deque" class="headerlink" title="什么是Deque"></a>什么是<code>Deque</code></h2><p>Deque（Double Ended Queue）就是 双端队列，特点是：</p>
+<ul>
+<li>可以在两端插入元素（头插、尾插）。</li>
+<li>可以在两端删除元素（头删、尾删）。<br>用 <code>双向链表</code>（Doubly Linked List） 来实现 Deque，原因是：</li>
+<li>双向链表支持在任意位置快速插入和删除，不需要整体移动元素。</li>
+<li>相比数组，链表在 Deque 场景下更高效（如果只关心两端操作）。</li>
+</ul>
+<p>此外还可基于<code>Array</code>进行实现</p>
+<hr>
+<h2 id="实现核心：Node节点和哨兵节点"><a href="#实现核心：Node节点和哨兵节点" class="headerlink" title="实现核心：Node节点和哨兵节点"></a>实现核心：Node节点和哨兵节点</h2><h3 id="1-Node节点"><a href="#1-Node节点" class="headerlink" title="1.Node节点"></a>1.<code>Node</code>节点</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">T</span> item<span class="token punctuation">;</span>
+    <span class="token class-name">Node</span> next<span class="token punctuation">;</span>
+    <span class="token class-name">Node</span> prev<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p><code>item</code>：保存实际元素。</p>
+</li>
+<li><p><code>next</code>：指向下一个节点。</p>
+</li>
+<li><p><code>prev</code>：指向上一个节点。</p>
+</li>
+</ul>
+<h3 id="2-Sentinel哨兵节点"><a href="#2-Sentinel哨兵节点" class="headerlink" title="2.Sentinel哨兵节点"></a>2.<code>Sentinel</code>哨兵节点</h3><ul>
+<li><p>哨兵（sentinel）本身不存数据（item&#x3D;null）。</p>
+</li>
+<li><p>它的 next 指向第一个元素，prev 指向最后一个元素。</p>
+</li>
+<li><p>当链表是空时：sentinel.next &#x3D;&#x3D; sentinel 且 sentinel.prev &#x3D;&#x3D; sentinel。</p>
+</li>
+<li><p>这样可以避免对头插、尾插写特殊判断，因为哨兵把链表首尾“连起来”了。</p>
+</li>
+</ul>
+<hr>
+<h2 id="插入到头节点"><a href="#插入到头节点" class="headerlink" title="插入到头节点"></a>插入到头节点</h2><h3 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h3><p>假设：</p>
+<p><code>sentinel</code> 是哨兵，不存实际数据。</p>
+<ul>
+<li>当前链表：</li>
+<li><code>sentinel &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></li>
+</ul>
+<p>此时 <code>sentinel.next</code> 是 <code>A</code>，<code>sentinel.prev</code> 是 <code>C</code>。</p>
+<h3 id="2-现在要把-X-插到最前面，也就是放到-A-前面。"><a href="#2-现在要把-X-插到最前面，也就是放到-A-前面。" class="headerlink" title="2.现在要把 X 插到最前面，也就是放到 A 前面。"></a>2.现在要把 <code>X</code> 插到最前面，也就是放到 <code>A</code> 前面。</h3><p>所以插入后应该是：<br><code>sentinel &lt;-&gt; X &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></p>
+<h3 id="3-执行的逻辑"><a href="#3-执行的逻辑" class="headerlink" title="3.执行的逻辑"></a>3.执行的逻辑</h3><p>✅ <code>newNode.prev = sentinel</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>新节点 X 的 prev 指针要指向 sentinel。</li>
+<li>因为 X 是新的第一个元素，它前面就是 sentinel。</li>
+</ul>
+<p>✅ <code>newNode.next = sentinel.next</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>新节点 X 的 next 指针要指向原来的第一个节点（就是 A）。</li>
+<li>因为 X 插在最前面，它后面就是原来的第一个节点。</li>
+</ul>
+<p>✅ <code>sentinel.next.prev = newNode</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>原来的第一个节点 A 的 prev 指针，要改成指向 X。</li>
+<li>因为 A 的前驱变成了 X（之前是 sentinel）。</li>
+</ul>
+<p>✅ <code>sentinel.next = newNode</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>sentinel 的 next 指针要指向 X。</li>
+<li>因为现在 X 是新的第一个节点。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addFirst</span><span class="token punctuation">(</span><span class="token class-name">T</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Node</span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    newNode<span class="token punctuation">.</span>prev <span class="token operator">=</span>  sentinel<span class="token punctuation">;</span>
+    newNode<span class="token punctuation">.</span>next <span class="token operator">=</span> sentinel<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    sentinel<span class="token punctuation">.</span>next<span class="token punctuation">.</span>prev <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+    sentinel<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+  <p> — 2025年7月17日</p>
+  
+
+
+        </div>
+
+        <div class="row mt-2">
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

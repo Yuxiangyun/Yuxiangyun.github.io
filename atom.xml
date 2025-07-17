@@ -6,7 +6,7 @@
   <link href="https://yuxiangyun.top/atom.xml" rel="self"/>
   
   <link href="https://yuxiangyun.top/"/>
-  <updated>2025-06-23T12:16:08.941Z</updated>
+  <updated>2025-07-17T02:59:25.504Z</updated>
   <id>https://yuxiangyun.top/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Deque</title>
+    <link href="https://yuxiangyun.top/2025/07/17/Deque/"/>
+    <id>https://yuxiangyun.top/2025/07/17/Deque/</id>
+    <published>2025-07-17T00:04:22.000Z</published>
+    <updated>2025-07-17T02:59:25.504Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是Deque"><a href="#什么是Deque" class="headerlink" title="什么是Deque"></a>什么是<code>Deque</code></h2><p>Deque（Double Ended Queue）就是 双端队列，特点是：</p><ul><li>可以在两端插入元素（头插、尾插）。</li><li>可以在两端删除元素（头删、尾删）。<br>用 <code>双向链表</code>（Doubly Linked List） 来实现 Deque，原因是：</li><li>双向链表支持在任意位置快速插入和删除，不需要整体移动元素。</li><li>相比数组，链表在 Deque 场景下更高效（如果只关心两端操作）。</li></ul><p>此外还可基于<code>Array</code>进行实现</p><hr><h2 id="实现核心：Node节点和哨兵节点"><a href="#实现核心：Node节点和哨兵节点" class="headerlink" title="实现核心：Node节点和哨兵节点"></a>实现核心：Node节点和哨兵节点</h2><h3 id="1-Node节点"><a href="#1-Node节点" class="headerlink" title="1.Node节点"></a>1.<code>Node</code>节点</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">&#123;</span>    <span class="token class-name">T</span> item<span class="token punctuation">;</span>    <span class="token class-name">Node</span> next<span class="token punctuation">;</span>    <span class="token class-name">Node</span> prev<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li><p><code>item</code>：保存实际元素。</p></li><li><p><code>next</code>：指向下一个节点。</p></li><li><p><code>prev</code>：指向上一个节点。</p></li></ul><h3 id="2-Sentinel哨兵节点"><a href="#2-Sentinel哨兵节点" class="headerlink" title="2.Sentinel哨兵节点"></a>2.<code>Sentinel</code>哨兵节点</h3><ul><li><p>哨兵（sentinel）本身不存数据（item&#x3D;null）。</p></li><li><p>它的 next 指向第一个元素，prev 指向最后一个元素。</p></li><li><p>当链表是空时：sentinel.next &#x3D;&#x3D; sentinel 且 sentinel.prev &#x3D;&#x3D; sentinel。</p></li><li><p>这样可以避免对头插、尾插写特殊判断，因为哨兵把链表首尾“连起来”了。</p></li></ul><hr><h2 id="插入到头节点"><a href="#插入到头节点" class="headerlink" title="插入到头节点"></a>插入到头节点</h2><h3 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h3><p>假设：</p><p><code>sentinel</code> 是哨兵，不存实际数据。</p><ul><li>当前链表：</li><li><code>sentinel &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></li></ul><p>此时 <code>sentinel.next</code> 是 <code>A</code>，<code>sentinel.prev</code> 是 <code>C</code>。</p><h3 id="2-现在要把-X-插到最前面，也就是放到-A-前面。"><a href="#2-现在要把-X-插到最前面，也就是放到-A-前面。" class="headerlink" title="2.现在要把 X 插到最前面，也就是放到 A 前面。"></a>2.现在要把 <code>X</code> 插到最前面，也就是放到 <code>A</code> 前面。</h3><p>所以插入后应该是：<br><code>sentinel &lt;-&gt; X &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></p><h3 id="3-执行的逻辑"><a href="#3-执行的逻辑" class="headerlink" title="3.执行的逻辑"></a>3.执行的逻辑</h3><p>✅ <code>newNode.prev = sentinel</code>;</p><p>意思是：</p><ul><li>新节点 X 的 prev 指针要指向 sentinel。</li><li>因为 X 是新的第一个元素，它前面就是 sentinel。</li></ul><p>✅ <code>newNode.next = sentinel.next</code>;</p><p>意思是：</p><ul><li>新节点 X 的 next 指针要指向原来的第一个节点（就是 A）。</li><li>因为 X 插在最前面，它后面就是原来的第一个节点。</li></ul><p>✅ <code>sentinel.next.prev = newNode</code>;</p><p>意思是：</p><ul><li>原来的第一个节点 A 的 prev 指针，要改成指向 X。</li><li>因为 A 的前驱变成了 X（之前是 sentinel）。</li></ul><p>✅ <code>sentinel.next = newNode</code>;</p><p>意思是：</p><ul><li>sentinel 的 next 指针要指向 X。</li><li>因为现在 X 是新的第一个节点。</li></ul><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addFirst</span><span class="token punctuation">(</span><span class="token class-name">T</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token class-name">Node</span> newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    newNode<span class="token punctuation">.</span>prev <span class="token operator">=</span>  sentinel<span class="token punctuation">;</span>    newNode<span class="token punctuation">.</span>next <span class="token operator">=</span> sentinel<span class="token punctuation">.</span>next<span class="token punctuation">;</span>    sentinel<span class="token punctuation">.</span>next<span class="token punctuation">.</span>prev <span class="token operator">=</span> newNode<span class="token punctuation">;</span>    sentinel<span class="token punctuation">.</span>next <span class="token operator">=</span> newNode<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是Deque&quot;&gt;&lt;a href=&quot;#什么是Deque&quot; class=&quot;headerlink&quot; title=&quot;什么是Deque&quot;&gt;&lt;/a&gt;什么是&lt;code&gt;Deque&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;Deque（Double Ended Queue）就是 双端队列，</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>《退件：请寄回发件人》</title>
@@ -64,137 +84,6 @@
   </entry>
   
   <entry>
-    <title>三月</title>
-    <link href="https://yuxiangyun.top/2025/04/07/Recentevent/"/>
-    <id>https://yuxiangyun.top/2025/04/07/Recentevent/</id>
-    <published>2025-04-06T16:31:30.000Z</published>
-    <updated>2025-04-07T11:44:30.738Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="生病"><a href="#生病" class="headerlink" title="生病"></a>生病</h1><p>也不知道是不是和冬天这个节气犯冲，每年冬天老是要跑医院。<br>这次生病挺严重了，天天往返医院。当时的心态真的变了许多，医院还是要少去，呆久了人都要E了。</p><span id="more"></span><p>这次是在医院住了七天，这也是我第一次住院。从小到大生的最严重的一次病。手术过程还是比较无感，留置针一扎，麻药一推倒数七秒钟直接就入睡了，睡眠体验我打十分。</p><p>被推到病床护士告诉我三天不能吃喝，我觉得还行，晚上一到，隔壁床嗲嗲就开始开火车了，这七天我的每天大概睡三小时。在又困又饿的情况下就这么熬了六天。终于知道挨饿是什么感觉了，脑子里面只被吃东西这一件事占据。</p><p>这次生病给我了一个大教训，才明白身体健康才是最重要的，其他的事情都可以慢慢来。</p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><p>看了快一个学期，在INFP的无限拖延下，我终于把那本《Cpp Primer Plus》给看完了，这是我这几年看的最厚的一本书了，还是一本教科书，虽然拖了很久但我还是佩服我自己。</p><p>虽然效率很低，但作者最后喂了波鸡汤：</p><blockquote><p>即使这是一个开始，前面还有许多事要去做，但目前你是成功的。</p></blockquote><h1 id="新学期"><a href="#新学期" class="headerlink" title="新学期"></a>新学期</h1><p>学期开学第一周我就放了一个月的假，身体到现在还没有恢复好，不能出去爽完，真的难受。开学到学校马上就吸取了上学期的教训，有条件就旷课，感谢每一个不用点名的老师。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;生病&quot;&gt;&lt;a href=&quot;#生病&quot; class=&quot;headerlink&quot; title=&quot;生病&quot;&gt;&lt;/a&gt;生病&lt;/h1&gt;&lt;p&gt;也不知道是不是和冬天这个节气犯冲，每年冬天老是要跑医院。&lt;br&gt;这次生病挺严重了，天天往返医院。当时的心态真的变了许多，医院还是要少去，呆久了人都要E了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-    <category term="心得" scheme="https://yuxiangyun.top/tags/%E5%BF%83%E5%BE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2024年终总结丨Don&#39;t Look Back In Anger</title>
-    <link href="https://yuxiangyun.top/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
-    <id>https://yuxiangyun.top/2024/12/17/Don%E2%80%98t%20look%20back%20in%20anger%E4%B8%A8%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</id>
-    <published>2024-12-17T12:07:54.000Z</published>
-    <updated>2024-12-17T14:07:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=4226232&auto=0&height=66"></iframe><h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>这一年总算是过去了，写一篇来记录和总结一下自己。这一年的最大的主题是高考，大人们经常说这么一句话，你就抱着你那《五年高考三年模拟》偷着乐吧，等你工作就知道读书有多爽了，这一点我部分赞同，因为高三下期排除在外。</p><p>今年是值得记录的一年，就码一点字。</p><span id="more"></span><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/2024%E6%80%BB%E7%BB%93/zoulang.jpg"></p><h1 id="六月"><a href="#六月" class="headerlink" title="六月"></a>六月</h1><p>在整个六月之前，我的主线任务一直围绕着<strong>高考</strong>而展开。在200天倒计时开始的时候，我觉得这日子是如此的难熬，时间流动的太慢了。换回现在大学的视角来看，之前的我确实是有挺多的想法的，才能让时间过得这么慢。不好好学习的后果就是真要到考试了是真的很慌张。我脑补了N种可能的情况，但结果确实最好的那一个，现在觉得当时精力确实很在线，试卷都那么多了还有时间瞎想。</p><p>倒数50天左右每天都要写很多张试卷，那时候的感知就没有那么强烈了，因为拿到题目就只能写了，没有太多东西可以考虑了。氛围有点压抑，一切发展的也挺有序，闲下来我总是在空想着考完干点什么。</p><p>高考那天，我穿着一双拖鞋就直接去了考场，樊姐问 “穿着拖鞋去高考啊？” 第一场过于紧张所以语文答的很糟糕，但命运在物理考试时眷顾了我，硬生生的给我估的分数高了20，我已经很满意了。出分那一天刚好在体育馆碰到物理老师牛Mer，我就觉得可能有些说法。</p><p>我报了一个离家近的学校，选专业上听了YanBo的建议，现在的我还是很满意的。</p><h1 id="后悔买晚了"><a href="#后悔买晚了" class="headerlink" title="后悔买晚了"></a>后悔买晚了</h1><ul><li>MUJI的双肩包，带行李箱带子，背袋</li></ul><p>​拿东西特方便，直接往后手一伸拉链一拉</p><ul><li>降噪耳机</li></ul><p>​第一次用的时候直接被震撼到了，一键静音</p><ul><li>2K高刷显示屏</li></ul><p>​24寸完全够我用了，不要太舒服</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/2024%E6%80%BB%E7%BB%93/backpack.jpg"></p><h1 id="年度食物"><a href="#年度食物" class="headerlink" title="年度食物"></a>年度食物</h1><p>上半年全部在食堂，我们学校能选的品很少。让我忘记不了的就只有两个，一个是早上的汤粉和晚上的面条。</p><p>我每天早上都比较饿，所以我都会在早读前早早准备好，系系鞋带啥的，铃声一响就直接小跑到食堂。</p><p>先说粉，上半年我还没有搞清楚这粉怎么吃，一次偶然打粉的叔往我碗里加了点辣椒炒肉的汤汁，我才真真意识到我前几年错过什么了。真是太香了，现在我还在怀念那一口鲜香又微辣的味道，唤醒我的一天，辣椒炒肉码子粉是这个👍。</p><p>面，一般是不知道吃什么的时候吃的。学校的面在吃法上有个特色就是不能加汤。这是第一个关键，但是也不知道学校为什么不卖拌面，每次想吃都要说一声“炸酱汤面不加汤”。这个炸酱是第二个关键（虽然炸酱似乎没什么酱）。饿的时候来这一碗碳水炸弹十分享受，吃的次数太多了，现在味道还是能回忆起来。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/2024%E6%80%BB%E7%BB%93/miantiao.jpg"></p><p>下半年出去吃的话，吃的最多的就是麦当劳。又不是哪天灵机一动想起来用闲鱼点单能省一两块钱，我就感觉赚了一个亿。有一周连续七天连续吃一餐，最爱板烧打折只要9块。我心里麦当劳是快餐品类的第一。</p><p>食堂吃的最多就是饺子。吃饺子大多时候在早上，早上没胃口，只有蘸醋的饺子才能让我开开胃。然后口味很多，我的排名：大葱＞玉米＞韭菜＞包菜。</p><h1 id="今年过的咋样"><a href="#今年过的咋样" class="headerlink" title="今年过的咋样"></a>今年过的咋样</h1><p>今年上半年很累，下半年很爽。</p><p>累是肯定的，特别是在那么紧张的环境里边我特容易多想，现在的我，回过去看过去一些想法，有许多是很多余的，带给了自己许多压力。我记得，有段时间特别沮丧，沮丧到我感觉我这辈子都没有这么沮丧过。有个发现就是特别难过的时候我话就特别少，不想和别人交流，然后猛吃零食。</p><p>这一年发生了许多的好事和坏事，坏事不能说是坏事因为至少让我能成长一点，以前的我总是找借口逃避问题，现在我大概七成问题都会想着去解决，这是我觉得今年我最大的变化了。</p><p>上大学意味着由紧张到FREE的氛围，想吃喝玩乐就能立马去。认识了新的朋友，十分开心。但还是没有完全适应这个非常FREE的氛围，到现在这个时间，我感觉已经有点腻了，so希望马上能够专注自己的目标吧。</p><h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>去年没有立什么Flag，今年开始立吧，希望明年这时候这些都能完成好。</p><ul><li><p>在暑假的时候我就一直考虑将来学些什么，思来想去还是选择了转码这条路径。25年先学习好CPP吧，多了解一下程序设计的流程。</p></li><li><p>学好英语，英语互联网还是很有意思的，希望能学好英语以后好出去玩。</p></li><li><p>然后就是web3，区块链这个概念很有意思，而且最近几年也越来越火了。眼睁睁看着大饼从7万到今天的10.6万。</p></li><li><p>戒烟，还TM是戒烟。</p></li><li><p>坚持把这个网站更新下去，毕竟一年的域名也便宜，到年底了又要续费了。希望十年后希望这个小站还在这互联网上。</p></li><li><p>？？？。</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=4226232&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
-
-&lt;h1 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h1&gt;&lt;p&gt;这一年总算是过去了，写一篇来记录和总结一下自己。这一年的最大的主题是高考，大人们经常说这么一句话，你就抱着你那《五年高考三年模拟》偷着乐吧，等你工作就知道读书有多爽了，这一点我部分赞同，因为高三下期排除在外。&lt;/p&gt;
-&lt;p&gt;今年是值得记录的一年，就码一点字。&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>「周结#3」谁说这天气烂的啊，这天气太棒了。</title>
-    <link href="https://yuxiangyun.top/2024/11/13/weekly-review2024-11-13/"/>
-    <id>https://yuxiangyun.top/2024/11/13/weekly-review2024-11-13/</id>
-    <published>2024-11-13T14:29:54.000Z</published>
-    <updated>2024-11-14T04:01:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/banner3.png"></p><blockquote><p>背光拍下来的的花🌸</p></blockquote><span id="more"></span><h1 id="校运动会，出门踏秋"><a href="#校运动会，出门踏秋" class="headerlink" title="校运动会，出门踏秋"></a>校运动会，出门踏秋</h1><p>因本人懒，故只能以观众的身份参加这次的运动会。一场一场的比赛就我而言有点枯燥了，所以就趁着这喜人的天气☀️出去探索一番。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/zj%20(1).jpg"></p><p>之前刷到过本地有国军立着的纪念碑🪦，所以和朋友约好了一起去看看。到了还挺吃惊的，这个地方完美的融入的街道。开始我以为有一个单独的公园，没想到就在街道边上。</p><blockquote><p>常德会战纪念碑位于中国湖南省常德市，建于纪念1943年发生的常德会战。这场战役是抗日战争期间中国军队与日军进行的一次激烈战斗，目的是阻止日军在湖南地区的进攻。常德会战中，中国守军奋力抵抗，以伤亡惨重为代价击退日军，成功守住了常德。纪念碑象征着对战斗中牺牲的中国军民的追思与敬意，同时提醒人们铭记抗战历史，不忘英勇先烈的牺牲精神。<strong>BY Chatgpt</strong></p></blockquote><p>街边有个特别大的牌坊，中间镶着国军前天白日军徽，相当霸气。整条街道绿化的非常好，纪念碑藏在里头，整条街上种满了梧桐树，太阳照下来很好看。</p><p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/zj%20(3).jpg"></p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/zj%20(5).jpg">然后一路转到常德诗墙，这儿靠着一条江，有人游泳，有人散步，悠闲退休的气氛环绕在这儿，最开心的还是拿着退休金的大爷大妈。整个诗墙在一个水坝上，上面刻满了诗，绕着一个圆弧形的坝，无奈文化造诣有限，没有细细欣赏下来。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/zj%20(8).jpg"></p><p>接着饱餐一顿搞到下一站，常德市博物馆。这里没有多少人，整个博物馆也是那种标准的布局，从石器时代到现代。一路下来感叹了老祖宗的智慧，许许多多的小玩意都十分精致。说到这就有点遗憾没有预约到国博的门票😭。近代区的主题就比较沉重了，常德会战，常德细菌战。</p><p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/zj%20(9).jpg"></p><blockquote><p>发财,发财,还是发财💴</p></blockquote><h1 id="上课现状"><a href="#上课现状" class="headerlink" title="上课现状"></a>上课现状</h1><p>现在这个课上的我真的很迷糊啊，专业课听不懂，基础课不想听。高数确实是一道坎，虽然才大一，但已经被压力到了。</p><p>大一的公共基础课真的是太烦了，我实在想不出思政，军事理论，职业规划..这些有什么用。</p><p>真正的学习还得是在互联网。</p><h1 id="自律？"><a href="#自律？" class="headerlink" title="自律？"></a>自律？</h1><p>最近日子过得还比较讲究。</p><p>首先3KM就跑了很多回，脸瘦了不少，这应该是最直观的好处了。每天睡的不错，继续保持！</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%91%A8%E8%AE%B0/3/banner3.png&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;背光拍下来的的花🌸&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="每周回顾" scheme="https://yuxiangyun.top/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>「周结#2」希望每天都能睡好</title>
-    <link href="https://yuxiangyun.top/2024/11/06/weekly-review2024-11-6/"/>
-    <id>https://yuxiangyun.top/2024/11/06/weekly-review2024-11-6/</id>
-    <published>2024-11-06T13:44:09.000Z</published>
-    <updated>2024-11-06T14:33:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/weekly-banner2.png"></p><blockquote><p>出门上自习时候拍到的朝霞🌅</p></blockquote><span id="more"></span><h1 id="时间过得有点快"><a href="#时间过得有点快" class="headerlink" title="时间过得有点快"></a>时间过得有点快</h1><p>上个周三还似乎历历在目，这个周三就这样猝不及防的赶来了。</p><p>在上中学的时候，望着那百来天的高考倒计时，和朋友吐槽过异常的难熬。而现在的日子似乎扎眼就过，在没有Social Media的时候虽然过得有点枯燥，但时间确是慢慢走的，留给我足够的空闲的时间去想象。现在每天拿起手机查看消息，刷屏幕，被海量的信息淹没，对时间的感知也逐渐麻木。</p><p>前一阵子看了李笑来的《和时间做朋友》还有<a href="https://survivesjtu.gitbook.io/survivesjtumanual">《上海交通大学生存指南》</a>，逐渐对时间的概念重视起来了，意识到流走的时间实在事太多了。小时候喜欢玩的游戏现在我也逐渐放下了，主要是没什么兴趣玩了，这下就多了许多时间。现在也很少去刷长视频，如果不是特别感兴趣的内容看的东西多少带着一些目标去的。但是，有一个例外，就是抖音。我真的很佩服它的产品设计，能让全球的男女老少沉迷其中。偶尔放松当然非常合适，但是时不时就容易上头，以至于脑袋里被装满各种各样的情绪垃圾。</p><h1 id="改变的习惯"><a href="#改变的习惯" class="headerlink" title="改变的习惯"></a>改变的习惯</h1><p>上大学之前，由于GFW的存在，我获取的信息仅仅局限于简中的互联网里面。但是上了大学有了网络条件这一切就有了比较大的改变了。</p><p>我知道了更多信息来源，很多时候回去尝试用英文去搜索问题，并且获得不同国家的内容观点。特别是最近我刷X特上瘾，这个软件感觉给我打造了一个舒适的泡泡，让我能第一时间就获得一些最新的消息。</p><p>这个习惯的改变不仅让我了解到了许许多多有用的知识，但我觉的更加重要的事情就是，这给了我一个新的视角去认识事情。之前单一的依赖简中环境去了解一些事情如果现在在我的视角来看就会有不同的看法，对观点和事情的包容性更强了。这点我认为非常Great。</p><h1 id="希望能睡好一点"><a href="#希望能睡好一点" class="headerlink" title="希望能睡好一点"></a>希望能睡好一点</h1><p>熬夜这个话题对我来说太沉重了，每天我都感觉睡眠不足。</p><p>每天大概睡眠时间只有六个半小时，课少还好，课多就能让我一整天无精打采。我对睡眠时间很敏感，虽然我能意识到这一点，但是做到早睡可真不容易。要想睡的好要考虑的东西也有很多，比如不能在睡前两小时吃东西。</p><p>真的好羡慕能够快速恢复精力的的人，但是尔等凡人既然没有这种能力的话，还是老老实实做到早睡早起，不要熬夜吧，不管手头有多重要的事情先放一放，好好睡觉！</p><h1 id="好好学习"><a href="#好好学习" class="headerlink" title="好好学习"></a>好好学习</h1><p>说到这个很惭愧，因为这个星期我旷了两节课。很顺利的旷课经历，大学第一次旷课感觉真的很爽！学校开的高数课，我几乎没听进去一点，真的。现在的我很慌，所以我决心好好补补我的高数课了，争取不要挂科😭。</p><p>兴趣是最好的老师，我对于学习CS还是有挺大兴趣的，希望能够坚持下去吧！我隐隐约约的感觉将来我可能真要靠这个吃饭了。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/weekly-banner2.png&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;出门上自习时候拍到的朝霞🌅&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="每周回顾" scheme="https://yuxiangyun.top/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>「周结#1」今天是一个值得庆祝的日子。</title>
-    <link href="https://yuxiangyun.top/2024/10/30/weekly-review2024-10-30/"/>
-    <id>https://yuxiangyun.top/2024/10/30/weekly-review2024-10-30/</id>
-    <published>2024-10-30T14:50:00.000Z</published>
-    <updated>2024-10-30T15:35:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/w1.png"></p><h1 id="新的开始"><a href="#新的开始" class="headerlink" title="新的开始"></a>新的开始</h1><p>今天刷Rss的时候，看见一个站主每周一次更新自己的动态，记录下自己每一周的回顾与心得，我觉得很有意思。今天晚自习的时候，我想起来我是不是也可以自己尝试一下这种形式，记录下我的生活以及反思呢？于是便有了这个开始！每周的周三，我都会花一点时间来整理一下这七天所发生的事情，可能有某个确定的主题，也可能只是琐碎的片段。</p><span id="more"></span><h1 id="个人站点的意义"><a href="#个人站点的意义" class="headerlink" title="个人站点的意义"></a>个人站点的意义</h1><p>现在主流的社交媒体，几乎占据了每个人的生活。然而社交媒体却有许多不足之处。</p><ul><li>无法自己管理自己的数据，数据都在各大厂手里，听天由命。</li></ul><blockquote><p>个人博客可以自己管理这些数据，配图文字都在本地以及云端有备份。</p></blockquote><ul><li>社交媒体有太多不适合展示这些内容的人，以及推送算法。</li></ul><blockquote><p>我的站点暂时只在QQ签名里展示，只有主动看我资料卡的以及我的主动分享才能来到这。</p></blockquote><ul><li>社交媒体情绪化，碎片化。</li></ul><blockquote><p>我经常在某空间以及某圈宣泄那些无人在意的情绪，虽然爽了那一会，但是过一段时间后就感觉没必要了，</p><p>而在这里我可以写出更长的东西。</p></blockquote><p>我以前常常怀疑，把日常的点滴，放在几乎没人来看的网上会不会没有意义，现在我觉得这是ROI十分高的行为。也许我会在每一次生日，每一次重大的时刻的时候去组织文字，把情感固化下来。当我快忘记这些事情的时候，再回头看看曾经的文字，肯定会回味无穷。就像高三时期，我坚持写日记，特别是情感特别需要发泄的时候，虽然现在看来这些事似乎也没那么重要。如果我没有记录下高考时期的我，那么这段记忆肯定会是模糊不清的。</p><p>此外，还有一个不太明显的好处就是，这让我能通过组织文字来反思与庆祝生活中的方方面面，文字是思维的载体，这样能展现我的变化。当然，如果真有人能阅读这些我也会相当开心。</p><h1 id="保持动力"><a href="#保持动力" class="headerlink" title="保持动力"></a>保持动力</h1><p>之所以开了「周结」，最大的原因就是为我设置一个DEADLINE，我是一个很懒的人，做事很喜欢拖沓。但是设置一个时间点应该能让我坚持更新。所以今天值得被记住哈哈哈，🎉！</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/yublog-image/image/2024/all/w1.png&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;新的开始&quot;&gt;&lt;a href=&quot;#新的开始&quot; class=&quot;headerlink&quot; title=&quot;新的开始&quot;&gt;&lt;/a&gt;新的开始&lt;/h1&gt;&lt;p&gt;今天刷Rss的时候，看见一个站主每周一次更新自己的动态，记录下自己每一周的回顾与心得，我觉得很有意思。今天晚自习的时候，我想起来我是不是也可以自己尝试一下这种形式，记录下我的生活以及反思呢？于是便有了这个开始！每周的周三，我都会花一点时间来整理一下这七天所发生的事情，可能有某个确定的主题，也可能只是琐碎的片段。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="每周回顾" scheme="https://yuxiangyun.top/categories/%E6%AF%8F%E5%91%A8%E5%9B%9E%E9%A1%BE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>得治治我的拖延症</title>
-    <link href="https://yuxiangyun.top/2024/10/21/donebetter/"/>
-    <id>https://yuxiangyun.top/2024/10/21/donebetter/</id>
-    <published>2024-10-21T04:59:54.000Z</published>
-    <updated>2025-01-18T01:59:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E6%8B%96%E5%BB%B6/tuoyan.jpg"></p><h1 id="Done-is-better-than-perfect"><a href="#Done-is-better-than-perfect" class="headerlink" title="Done is better than perfect"></a>Done is better than perfect</h1><p>不知道从什么时候开始，变得喜欢给自己找<strong>借口</strong>。</p><p>在小的时候，如果想要什么事情我总是能完全专注在其中。比如我要玩一个游戏但是却要配置许许多多东西，不知道能不能完成，但我还是会一直钻研，我想做个视频发到网站，我就会立马去下载剪辑软件录制素材。正是因为小时候这种对事情的态度，对现在的我可能还造成了不小的影响。</p><p>而现在我却很难这样二话不说，毫不忧虑的开始做一件事。这背后可能有很多的原因，比如说时间变得更紧张了，对许多事情失去了好奇心。但这些原因不是阻挡我某时某刻认真去完成某件事的直接原因，使得我拖延的是我的内心一直在和我说自己说<strong>“这件事是不是可以做的更好？”</strong>。</p><span id="more"></span><p>比如，当我决定学习编程时候，我可能会对自己说 “今天的状态是不是有点不好啊，效率会不会不高，要不要先玩会《我的世界》？”，又比如说当我突然萌生一个写一篇博文的想法，我的脑袋又会跳出一句话 “现在写这些是不是不合适，我是不是会写一些垃圾出来，要不再等等？”</p><p>有的时候我借助这<strong>力求完美</strong>这个借口为自己的行为开脱，也有些时候我确实因为惧怕<strong>不够完美</strong>而无法迈出自己的第一步。而现在想想，无论做什么事情，似乎只有做起来才是真正重要的事情。因为大多的时候我们会因为这些顾虑而不断<strong>拖延</strong>。</p><h1 id="接受不完美"><a href="#接受不完美" class="headerlink" title="接受不完美"></a>接受不完美</h1><p>存在着一小部分，它们有着非凡的自驱力，可以顺利完成自己规划的事情。但对于资质平庸的我，似乎把追求完美放在首位并不太可靠，因为没有动力，热情来维持行动。</p><p>当我开始做一件事情的时候，那这件事情注定会存在问题，就像世界上没有完美的人，世界上也不会存在完美的事。所以不用担心自己会不会把事情弄得太糟，担心自己会不会没有效率。当我们真正完成了某件事，那它就已经完成了，永远都比还没有行动要好。我们可以不断的改善。</p><h1 id="想做就做！"><a href="#想做就做！" class="headerlink" title="想做就做！"></a>想做就做！</h1><p>最近这两天感觉自己学习效率又降了不少，感觉就像一条正弦曲线有升有降。今天在看Cherno时候看到这个观点，感觉非常的适合我。因为我就是老喜欢拖延，放下正事刷抖音玩游戏。但实际上如果开始做了，那么还是很容易保持专注的。希望接下来能有说干就干的状态吧！</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E6%8B%96%E5%BB%B6/tuoyan.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Done-is-better-than-perfect&quot;&gt;&lt;a href=&quot;#Done-is-better-than-perfect&quot; class=&quot;headerlink&quot; title=&quot;Done is better than perfect&quot;&gt;&lt;/a&gt;Done is better than perfect&lt;/h1&gt;&lt;p&gt;不知道从什么时候开始，变得喜欢给自己找&lt;strong&gt;借口&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;在小的时候，如果想要什么事情我总是能完全专注在其中。比如我要玩一个游戏但是却要配置许许多多东西，不知道能不能完成，但我还是会一直钻研，我想做个视频发到网站，我就会立马去下载剪辑软件录制素材。正是因为小时候这种对事情的态度，对现在的我可能还造成了不小的影响。&lt;/p&gt;
-&lt;p&gt;而现在我却很难这样二话不说，毫不忧虑的开始做一件事。这背后可能有很多的原因，比如说时间变得更紧张了，对许多事情失去了好奇心。但这些原因不是阻挡我某时某刻认真去完成某件事的直接原因，使得我拖延的是我的内心一直在和我说自己说&lt;strong&gt;“这件事是不是可以做的更好？”&lt;/strong&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="心得" scheme="https://yuxiangyun.top/tags/%E5%BF%83%E5%BE%97/"/>
-    
-  </entry>
-  
-  <entry>
     <title>CPP笔记</title>
     <link href="https://yuxiangyun.top/2024/10/15/cppnote/"/>
     <id>https://yuxiangyun.top/2024/10/15/cppnote/</id>
@@ -210,185 +99,6 @@
     
     
     <category term="NOTE" scheme="https://yuxiangyun.top/categories/NOTE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>大学军训</title>
-    <link href="https://yuxiangyun.top/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/"/>
-    <id>https://yuxiangyun.top/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/</id>
-    <published>2024-09-19T13:46:59.000Z</published>
-    <updated>2025-06-15T09:21:55.855Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%86%9B%E8%AE%AD/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD.jpg"></p><h1 id="周期长，时间很难熬"><a href="#周期长，时间很难熬" class="headerlink" title="周期长，时间很难熬"></a>周期长，时间很难熬</h1><p>这一点很值得一提，初中高中军训周期都很短，7到14d，这个时间属于刚好不用吃很多苦头就能留下难忘经历的训练周期</p><p>而大学军训有21d，还有十天结束我已经十分疲倦了。早上五点半起床晚上十一点半入睡，我的睡眠需求在7.5➕，加上训练，真的难受</p><p>每天来回路上都是鸟语花香，打哈切从早到晚，睡眠不足真的很煎熬。洗完衣服玩会手机就能闭眼睡着</p><span id="more"></span><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%86%9B%E8%AE%AD/%E5%86%9B%E8%AE%AD666.jpg"></p><h1 id="训练够累"><a href="#训练够累" class="headerlink" title="训练够累"></a>训练够累</h1><p>经常刷到 <strong>敬礼不放手，正步不松腿，齐步不松臂</strong> 都会笑一下，没想到这事真落我头上了。隔壁排天才教官还发明出来了敬礼➕抬腿</p><p>对于<strong>定动作</strong>这回事，上半身偷懒要难于下半身，正步定腿可以偷偷放下不是很明显，但敬礼，齐步抬手就很难了，非常容易被发现</p><p>这十天下来，最累的应该是走正步，走的时候定住那么一会儿要靠核心力量收紧防止摔倒，还要把腿高高抬起，整上那么三四回，真的酸爽</p><p>军训的累😮‍💨其实很大程度我觉得是因为<strong>睡眠不足</strong>，每天都能恰到好处的压榨完我所有的精力</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%86%9B%E8%AE%AD/junxun.jpg"></p><h1 id="军训有啥用？"><a href="#军训有啥用？" class="headerlink" title="军训有啥用？"></a>军训有啥用？</h1><p>教官说军训能提升我们的集体意识和爱国意识</p><p>爱国这个点就很值得怀疑，爱国我觉得应该由心而发，一个不爱国的人会不会经过这一段军训就爱国了么</p><p>再说 <strong>『集体利益高于一切』</strong> 这个观点，我觉得是非常不对的。在军训下，我们必须 <strong>服从指挥</strong>，这是反人性的，每个人的自由意志都被抑制。如果在军队中，服从指挥往往是有参军的梦想，以及<strong>荣誉</strong>。而似乎军训教导给我们更多的似乎是要<strong>好好听话</strong></p><p>不过在集体上，军训能让我们对彼此更加了解，起到破冰🧊的作用</p><p>军训存在可能是它之前已经存在了，军训汇演可以让领导们眼前一亮</p><p>对于我个人来说，14d左右的军训还是很有意思，拉回到高三7d的军训，天天都乐呵呵的，教官很好相处，特有意思。两个人面对面憋笑这个事我到现在还觉得很有意思，留下了很深刻的印象</p><p>这次军训虽然没有结束，但最累的十天已经过去了，正是因为高强度的训练，这段回忆才会尤为深刻，在多年以后某个时刻回忆起大学就能立马想起军训这段时光</p><h1 id="IN-A-NUTSHELL"><a href="#IN-A-NUTSHELL" class="headerlink" title="IN A NUTSHELL"></a>IN A NUTSHELL</h1><p>军训我觉得可以有但是时间应该短点，21d实在是太长了。它有许多可以诟病的地方，但却是我刚迈进大学的一段难忘时光，并且会在之后的日子当中日久弥新。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%86%9B%E8%AE%AD/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;周期长，时间很难熬&quot;&gt;&lt;a href=&quot;#周期长，时间很难熬&quot; class=&quot;headerlink&quot; title=&quot;周期长，时间很难熬&quot;&gt;&lt;/a&gt;周期长，时间很难熬&lt;/h1&gt;&lt;p&gt;这一点很值得一提，初中高中军训周期都很短，7到14d，这个时间属于刚好不用吃很多苦头就能留下难忘经历的训练周期&lt;/p&gt;
-&lt;p&gt;而大学军训有21d，还有十天结束我已经十分疲倦了。早上五点半起床晚上十一点半入睡，我的睡眠需求在7.5➕，加上训练，真的难受&lt;/p&gt;
-&lt;p&gt;每天来回路上都是鸟语花香，打哈切从早到晚，睡眠不足真的很煎熬。洗完衣服玩会手机就能闭眼睡着&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-    <category term="心得" scheme="https://yuxiangyun.top/tags/%E5%BF%83%E5%BE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初见大学</title>
-    <link href="https://yuxiangyun.top/2024/09/09/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6/"/>
-    <id>https://yuxiangyun.top/2024/09/09/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6/</id>
-    <published>2024-09-09T14:35:03.000Z</published>
-    <updated>2025-06-15T09:21:25.599Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6.jpg"></p><h1 id="开学前"><a href="#开学前" class="headerlink" title="开学前"></a>开学前</h1><p>从6月9日高考结束到开学9月1日，三个月的假期几乎没有计划地就度过了，每天吃喝睡然后刷抖音。夏天全国都很热🥵，偶尔出去玩一会都热的非常难受，尤其在长沙！</p><p>所以假期到后面便开始呈现一种虚无之感了，可能对我这样玩太久也会很难受吧哈哈。</p><p>临近开学便开始期待了，期待高三想象中的大学生活（主要是美好的一面），以及到一个新的环境也会让我兴奋。所以我还是很期待开学的，但中间也曾担忧会被分到8人寝室，所以还有一丝开盲盒的感觉。</p><span id="more"></span><h1 id="报道"><a href="#报道" class="headerlink" title="报道"></a>报道</h1><p>坐高铁直接就到常德站。</p><p>初次见面这座城市，给我一种很轻切的感觉，当地的方言说快了我就有点听不太明白，但确很亲切。这座被称为<strong>桃花源的城市</strong>，文旅宣传很到位，出租车也全都是粉色的。</p><p>到校没多久，学校安排的志愿者就来引导我入校，一切都很顺利，我打开了寝室的大门。</p><p>四个人的寝室，大家都已经到了，空间我觉得还是比较宽敞的，运气不错的是大家都很好相处很有礼貌。大家合力把宿舍整理干净,开学干啥都一起走。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/kaixue.jpg"></p><blockquote><p>好乱的桌子！！</p></blockquote><h1 id="听会"><a href="#听会" class="headerlink" title="听会"></a>听会</h1><p>开学开了许多会。</p><p>就我个人，其实挺不喜欢听会的。大多数听的会无非就是看<strong>PPT中插入的视频</strong>，而且有许多自己不关心的事情。加之天气异常的闷热，就很难受 <strong>:(</strong></p><p>然后，会上提到第二课堂和易班我觉得很难评，这些懂得都懂。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/lib1.jpg"></p><p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/lib2.jpg"></p><blockquote><p>学校的图书馆开灯看起来挺好看</p></blockquote><h1 id="军训"><a href="#军训" class="headerlink" title="军训"></a>军训</h1><p>军训21天，我真的怀疑人生。太多可以吐槽的了，我觉得军训真的大可不必，有点没苦硬吃那种感觉。</p><p>首先是统一服装，学校80块一套的军训服，真特么的难穿，穿着身上还哪哪都不舒服。每天5点早起穿上这套衣服感觉天要塌了。</p><p>教官是我们学校的学生，军训从小开始，差不多轻车熟路，但是站在那一动不动真的很难受。每天听着命令<del>使唤</del>，真的是一种折磨。</p><p>每天最期待的事情就是吃饭，不管吃啥都能把饭吃的干干净净。学校食堂物价一般，但口味确实还行，看着很干净也很好吃，特别是学校的米我觉得很好吃。</p><p>军训没和几个人熟悉，熟悉的人仅仅只有舍友，我觉得这样也挺好。</p><h1 id="扯几句"><a href="#扯几句" class="headerlink" title="扯几句"></a>扯几句</h1><p>最近在找合适的图床，真不想要用腾讯家的对象存储，如果找到合适的以后可以多配几张图片了。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%80%E5%AD%A6/%E5%88%9D%E8%A7%81%E5%A4%A7%E5%AD%A6.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;开学前&quot;&gt;&lt;a href=&quot;#开学前&quot; class=&quot;headerlink&quot; title=&quot;开学前&quot;&gt;&lt;/a&gt;开学前&lt;/h1&gt;&lt;p&gt;从6月9日高考结束到开学9月1日，三个月的假期几乎没有计划地就度过了，每天吃喝睡然后刷抖音。夏天全国都很热🥵，偶尔出去玩一会都热的非常难受，尤其在长沙！&lt;/p&gt;
-&lt;p&gt;所以假期到后面便开始呈现一种虚无之感了，可能对我这样玩太久也会很难受吧哈哈。&lt;/p&gt;
-&lt;p&gt;临近开学便开始期待了，期待高三想象中的大学生活（主要是美好的一面），以及到一个新的环境也会让我兴奋。所以我还是很期待开学的，但中间也曾担忧会被分到8人寝室，所以还有一丝开盲盒的感觉。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>英语语法入门</title>
-    <link href="https://yuxiangyun.top/2024/08/26/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/"/>
-    <id>https://yuxiangyun.top/2024/08/26/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/</id>
-    <published>2024-08-26T04:00:00.000Z</published>
-    <updated>2024-10-26T15:07:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="英语语法入门"><a href="#英语语法入门" class="headerlink" title="英语语法入门"></a>英语语法入门</h1><p>关于英语语法一些基本要素的笔记,自己整理一下.</p><span id="more"></span><h1 id="造句-Construct"><a href="#造句-Construct" class="headerlink" title="造句 Construct"></a>造句 Construct</h1><p>主语Subject(人或物) ＋ 谓语Predicate(动作或发生了什么事)</p><p>五种<strong>基本句型</strong>如下,加粗为<strong>谓语动词</strong>,斜体为<em>宾语</em>,删除线为<del>补语</del></p><hr><ol><li>可以独立完成的动作(主语＋不及物动词)<br>Papa Rabbit <strong>sleeps.</strong></li><li>有一个承受者(主语+单及物动词+宾语)<br>Papa Rabbit <strong>likes</strong> <em>you.</em></li><li>有两个动作承受者(主语+双及物动词+间接宾语+直接宾语)<br>Papa Rabbit <strong>teaches</strong> <em>you</em> <em>English.</em></li><li>有一个动作承受者但需补充(主语+复杂及物动词+宾语+宾语补语)<br>Papa Rabbit <strong>considers</strong> <em>you</em> <del>smart.</del></li><li>非动作(主语+系动词+表语)<br>Papa <strong>is&#x2F;looks</strong> tall</li></ol><hr><h1 id="句子成分-Elements"><a href="#句子成分-Elements" class="headerlink" title="句子成分 Elements"></a>句子成分 Elements</h1><p>同一句子成分可能有不同的词类</p><p><strong>复合句</strong>&#x2F;并列句Compound Sentence:句子叠加,并列关系</p><p><strong>复杂句</strong>Complex Sentence:一个句子套一个句子,或者继续套下去…,从属关系</p><table><thead><tr><th>作主语</th><th>作宾语</th><th>作表语</th><th>作同位语</th></tr></thead><tbody><tr><td>主语从句</td><td>宾语从句</td><td>表语从句</td><td>同位语从句</td></tr></tbody></table><blockquote><p>以上为名词性从句,具有名词性质</p></blockquote><table><thead><tr><th>作定语</th><th>作状语</th></tr></thead><tbody><tr><td>定语从句</td><td>状语从句</td></tr></tbody></table><hr><ol><li>主语</li><li>谓语</li><li>宾语</li><li>宾语补足语</li><li>主语补足语(表语)</li><li>定语,主要修饰主语或宾语<br><strong>The little white</strong> rabbit ate <strong>a large</strong> carrot</li><li>状语,主要修饰谓语动词<br>The rabbit ate <strong>quickly</strong></li><li>同位语,再把主语或宾语描述一遍<br>PaPa Rabbit, <strong>an English teacher</strong>,eats carrots.</li></ol><hr><h1 id="词性Parts-of-Speech"><a href="#词性Parts-of-Speech" class="headerlink" title="词性Parts of Speech"></a>词性Parts of Speech</h1><ol><li><p>名词 nouns,表人和物</p></li><li><p>冠词 articles,说明人和事物<br><strong>a</strong> rabbit.</p></li><li><p>代词 pronouns,代替人和物<br><strong>I</strong> am a rabbit.</p></li><li><p>形容词adjectives,形容人和物<br>I am a <strong>smart</strong> rabbit.</p></li><li><p>数词 numerals,表示数量<br>I ate <strong>two</strong> carrots.</p></li><li><p>副词 adverbs,修饰动词或形容词<br>I ate two carrots <strong>quickly</strong>.</p></li><li><p>介词 prepositions,表示和其他词关系的词<br>I ate two carrots <strong>with</strong> chopsticks.</p></li><li><p>叹词 interjections,表示感叹<br><strong>Ah</strong>,the carrots is tasty.</p></li><li><p>连词 conjunctions,连接词与句<br>I ate two carrots and a photo,<strong>because</strong> I was hungry.</p></li><li><p>动词 verb,往往不能独立完成<strong>TAM</strong>,否定&#x2F;可能&#x2F;必须等需要<strong>助动词</strong></p><blockquote><p>时<strong>T</strong>ense时间<br>体<strong>A</strong>spect动作状态<br>气<strong>M</strong>ood动作假设,情感</p></blockquote></li></ol><table><thead><tr><th></th><th>一般</th><th>进行</th><th>完成</th><th>完成进行</th></tr></thead><tbody><tr><td><strong>现在</strong></td><td>一般现在时态</td><td>现在进行时态</td><td>现在完成时态</td><td>现在完成进行时态</td></tr><tr><td></td><td>eat&#x2F;eats</td><td>am&#x2F;is&#x2F;are eating</td><td>has&#x2F;have eaten</td><td>has&#x2F;have been eating</td></tr><tr><td><strong>过去</strong></td><td>一般过去时态</td><td>过去进行时态</td><td>过去完成时态</td><td>过去完成进行时态</td></tr><tr><td></td><td>ate</td><td>was&#x2F;were eating</td><td>had eaten</td><td>had been eating</td></tr><tr><td><strong>将来</strong></td><td>一般将来时态</td><td>将来进行时态</td><td>将来完成时态</td><td>将来完成进行时态</td></tr><tr><td></td><td>will eat</td><td>will be eating</td><td>will have eaten</td><td>will have been eating</td></tr><tr><td><strong>过去将来</strong></td><td>一般过去将来时态</td><td>过去将来进行时态</td><td>过去将来完成时态</td><td>过去将来完成进行时态</td></tr><tr><td></td><td>would eat</td><td>would be eating</td><td>would have eaten</td><td>would have been eating</td></tr></tbody></table><blockquote><p><strong>时间</strong>与<strong>动作状态</strong>可以进行组合</p></blockquote><h2 id="非谓语动词"><a href="#非谓语动词" class="headerlink" title="非谓语动词"></a>非谓语动词</h2><p>动词可能被用作主谓宾定状补,称为非谓语动词.几乎可取代所有从句,却不再具有标识TAM的能力.</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;英语语法入门&quot;&gt;&lt;a href=&quot;#英语语法入门&quot; class=&quot;headerlink&quot; title=&quot;英语语法入门&quot;&gt;&lt;/a&gt;英语语法入门&lt;/h1&gt;&lt;p&gt;关于英语语法一些基本要素的笔记,自己整理一下.&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="NOTE" scheme="https://yuxiangyun.top/categories/NOTE/"/>
-    
-    
-    <category term="学习笔记" scheme="https://yuxiangyun.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高考</title>
-    <link href="https://yuxiangyun.top/2024/07/10/%E9%AB%98%E8%80%83/"/>
-    <id>https://yuxiangyun.top/2024/07/10/%E9%AB%98%E8%80%83/</id>
-    <published>2024-07-10T10:37:55.000Z</published>
-    <updated>2024-10-26T16:54:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E9%AB%98%E8%80%83.jpg"></p><h2 id="高考前的日子-📚"><a href="#高考前的日子-📚" class="headerlink" title="高考前的日子 📚"></a>高考前的日子 📚</h2><p>现在是高考完后的一个月多三天。回忆起高考前的高三生活，大部分都已经模糊不清。也许是考后的网络冲浪和种种放纵冲淡了这些记忆，心中居然会有些怀念。（不可能想回去哈哈）</p><p>像高考语文中那句“往事总在回忆时被赋予意义”。</p><span id="more"></span><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E8%8A%B1%E6%9C%B5.jpg"></p><blockquote><p>瓜哥插的花</p></blockquote><p>高三下的日子充满了压力，尤其在最后两个月。各种摆烂的想法和斗志满满的心态不断在脑中交替循环。我常常为以前荒芜的学习时间感到懊悔与无奈，同时不断提醒自己知来者可追的道理。</p><p>矛盾的心理在我心中上演。面对无数份试题，我常常在紧要关头懈怠，但好在身边的朋友和同学总能帮助我渡过这些崩溃时刻。我再也不愿体验那种看到那400出头的分数的心情。好在高考前，我的心态有所好转，心态的转变对我的高考尤为重要。</p><p>高三也是多病多灾的时期。在这一年，我崴了脚，屁股上还做了个贼痛的手术，最后一个月几乎被神经头痛所包围，直到考前我的头仍然再痛。</p><p>高中整个阶段虽然乏味，但它难得地给了我许多空闲时间去想象和思考，而不是被手机通知打扰。这一点我非常想念。</p><h2 id="仓促的成人礼-🎓"><a href="#仓促的成人礼-🎓" class="headerlink" title="仓促的成人礼 🎓"></a>仓促的成人礼 🎓</h2><p><img src="http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E7%8E%8B%E8%80%81%E5%B8%88%E5%90%88%E5%BD%B1.jpg"></p><blockquote><p>和王哥合影</p></blockquote><p>成人礼是高考前最重要的活动。每个人都准备好写给父母的信，并把写满理想愿望的卡片挂在树枝上。领导在台上的演讲一如既往地无聊。</p><p>结束演讲后，我们都越过一道门，与老师击掌。牛嗲甚至握住了我的手，这点值得一提，因为我的物理选择题啥也不会做也有48分。</p><p>那天下起了小雨，仪式只用了一个上午的时间，三年的高中生活以这种方式结束，我并没有准备好迎接高考。</p><h2 id="参加高考-📝"><a href="#参加高考-📝" class="headerlink" title="参加高考 📝"></a>参加高考 📝</h2><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E6%94%B6%E4%B9%A6.jpg"></p><blockquote><p>收书，不要的扔掉，结果全部扔掉了</p></blockquote><p>坐上大巴，高一和高二的同学们像往年一样为高三的我们加油送行。</p><p>我的心情早已在这种氛围中归于佛系。值得一提的是考前的前一个晚上，学校用车灯照亮了我们回寝的路，这点九中值得表扬。</p><p>我带上了平时需要的东西，其中我最爱的喜多多也没落下。尽管它很沉，但它早已融入了我的校园生活，有了它，我会多一分安心少一分不安。</p><p>铺好床，熟悉考场，听老师强调重点注意事项。我的内心平静，放下了以往的焦虑，有种接受审判的从容。</p><p>考前那一个晚上，意料之中地我没有睡着。我穿着拖鞋考完了语文和数学，似乎和往常一样，只是做得题目多了一些而已。直到最后一门科目生物考完，高考也就结束了。</p><p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E8%B5%B0%E5%BB%8A.jpg"></p><blockquote><p>宿舍走廊</p></blockquote><h2 id="考后-🎉"><a href="#考后-🎉" class="headerlink" title="考后 🎉"></a>考后 🎉</h2><p>坐上了回程的大巴车，手机上已经能搜到答案。瞄了一眼，似乎错的还挺多，就没再看了。关掉手机，心中莫名难受，但很快车就到校了，我马上恢复到了亢奋的状态，因为我期盼已久的假期此时正在眼前。</p><p>我去了北京，打卡了各处我曾心心念念的景点。加上手机信息的轰炸，我的情绪早已被磨平，很难有大起大落。</p><p>在成绩出来的那一天，先去和朋友看了云边，然后买了一杯奶茶，回到家里打开电脑查看成绩。尽管结果不是很高，但超出了我的预期。至少也有书读了，是吧？我不知道这一切是好是坏，但确实是一个月前我所期盼的结果。</p><p>成绩出来后，我没有喝酒也没有疯玩，只是平静地接受了一切，为我的高中生活划上了句号。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E9%AB%98%E8%80%83/%E9%AB%98%E8%80%83.jpg&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;高考前的日子-📚&quot;&gt;&lt;a href=&quot;#高考前的日子-📚&quot; class=&quot;headerlink&quot; title=&quot;高考前的日子 📚&quot;&gt;&lt;/a&gt;高考前的日子 📚&lt;/h2&gt;&lt;p&gt;现在是高考完后的一个月多三天。回忆起高考前的高三生活，大部分都已经模糊不清。也许是考后的网络冲浪和种种放纵冲淡了这些记忆，心中居然会有些怀念。（不可能想回去哈哈）&lt;/p&gt;
-&lt;p&gt;像高考语文中那句“往事总在回忆时被赋予意义”。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次引流手术</title>
-    <link href="https://yuxiangyun.top/2024/02/24/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%BC%95%E6%B5%81%E6%89%8B%E6%9C%AF/"/>
-    <id>https://yuxiangyun.top/2024/02/24/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%BC%95%E6%B5%81%E6%89%8B%E6%9C%AF/</id>
-    <published>2024-02-24T12:35:46.000Z</published>
-    <updated>2024-10-26T16:54:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%95%E6%B5%81%E6%89%8B%E6%9C%AF/shoushu.jpg"></p><blockquote><p>行刑地</p></blockquote><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>今年我做了人生中的第一个小手术，引流手术。如果你看到“火疖子”“囊肿”这几个词在幸灾乐祸，你最好保佑好自己🙏不会有这些东西。</p><p>伏笔大概已经在去年就埋好了，那时候在学校因为坐得久，屁股上长了一个小肿块，是的，一个小肿块和我的屁股和谐共生。</p><span id="more"></span><h1 id="生长"><a href="#生长" class="headerlink" title="生长"></a>生长</h1><p>过年我把这件事和家里人说了，他们推荐我擦点药，我照做了，并逐渐对这个肿块产生了非常大的兴趣，经常没事去看看它还在不在，我现在真特么后悔那时手贱的自己啊。</p><p>我估计因为这事刺激到我们这个小可爱了，去学校后，吃的差的原因，免疫力下降，屁股那块开始就慢慢肿起来了。</p><p>开始并不大，我没当回事，知道我发现我淋巴开始肿起来了才意识到问题的严重。</p><p>等有鸽子蛋🥚那么大的时候，坐在椅子上就是煎熬了，因为上学要一直坐那，我真的想die。过了一天，是最痛的时候，有一个鸡蛋那么大了。</p><p>怎么描述那种感觉了？每次坐下去和起来，我都要倍受2分钟的折磨，肌肉全部缩紧，痛的我冷汗出来。还好终于熬到放假了🙂。</p><h1 id="手术"><a href="#手术" class="headerlink" title="手术"></a>手术</h1><p>看病的时候，给我问诊的医生是一个的大姐姐，在看过我病情后说，这么严重了，只能引流了。只是一句“有点痛”迷惑了一波我。</p><p>到此为止，我还以为问题不是很严重。</p><p>动刀子的房间两个男医生一个女医生，他们只是让我准备一下。我笑嘻嘻的躺上去以为马上就能结束痛苦。</p><p>开始消毒，打麻药，卧槽直接叫出来，这他马是有点痛？那针好像好粗一根，结果后面感受还是很痛。当开始引流的时候，我手直接抓死了床单，脑子只有我草能说出来根本想不出别的词。</p><p>不过这里的医生挺有味，说要出一篇论文研究下人在疼痛的情况下会叫什么🙂，他们说我的言语虽然激烈了一些，但是身体却没有乱动，已经很棒了。我一直喘大气，直到弄完。我力气都没了，虚脱了，感觉嘴巴都白掉了。</p><p>差点痛出这个美丽世界。</p><h1 id="换药"><a href="#换药" class="headerlink" title="换药"></a>换药</h1><p>我以为我已经熬完了这场浩劫。第二天开开心心去换药以为只是消个毒。</p><p>特么没想到，痛感还是那么大，只是持续时间少了点，这次我只说了一声😯🌿然后哼哼哼的扛了过去，听说是要把消毒棉花塞进去，还要换几次药😭哎。</p><p>今天是第二次换药，医生很好，但还是很痛，但没有那么久了。医生说我伤口还有炎症，并且我才知道要把纱布塞进肉里面，换药时候拔出来重新塞进去一个。</p><p>形象点描述就是：每天换药就像屁股中了一枪</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/2024/%E5%BC%95%E6%B5%81%E6%89%8B%E6%9C%AF/shoushu.jpg&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;行刑地&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h1&gt;&lt;p&gt;今年我做了人生中的第一个小手术，引流手术。如果你看到“火疖子”“囊肿”这几个词在幸灾乐祸，你最好保佑好自己🙏不会有这些东西。&lt;/p&gt;
-&lt;p&gt;伏笔大概已经在去年就埋好了，那时候在学校因为坐得久，屁股上长了一个小肿块，是的，一个小肿块和我的屁股和谐共生。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-    <category term="生病" scheme="https://yuxiangyun.top/tags/%E7%94%9F%E7%97%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于写日记</title>
-    <link href="https://yuxiangyun.top/2024/02/08/%E6%97%A5%E8%AE%B0/"/>
-    <id>https://yuxiangyun.top/2024/02/08/%E6%97%A5%E8%AE%B0/</id>
-    <published>2024-02-08T07:53:18.000Z</published>
-    <updated>2024-10-26T15:10:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="为什么要写日记❔️"><a href="#为什么要写日记❔️" class="headerlink" title="为什么要写日记❔️"></a>为什么要写日记❔️</h1><p>写日记可以回顾记忆、理解自我思想、改变对待生活的态度。日记是理解自己想法和感受的方式，可以通过问自己问题来审问自己。写日记的三个方式分别是记录当天事情、讲故事和写晨报。通过写日记，可以增加对生活的欣赏和创造力。总结自Ali Abdaal</p><span id="more"></span><h1 id="晨间日记🥪"><a href="#晨间日记🥪" class="headerlink" title="晨间日记🥪"></a>晨间日记🥪</h1><p>想到什么就写一些什么，开阔一下自己的想象力。如果实在是不知道从何处起笔，那么可以这样子写，现在是2月8日的下午，我坐在床上…</p><h1 id="心情日记😀"><a href="#心情日记😀" class="headerlink" title="心情日记😀"></a>心情日记😀</h1><p>纪录今天做了什么事情？今天发生的几件事？重点落在思绪，感受，情感……</p><p>表达性写作，纪录生活中任何痛苦，消极，抓马的事，主要记录今天自己的感受（情绪），以及对事情的想法，并反思今天的行为如何影响自己的心情，可以如何更积极应对。</p><h1 id="日记作业📘"><a href="#日记作业📘" class="headerlink" title="日记作业📘"></a>日记作业📘</h1><p>今天发生在我身上的最有故事价值的事情是什么？</p><h1 id="感恩日记❤"><a href="#感恩日记❤" class="headerlink" title="感恩日记❤"></a>感恩日记❤</h1><p>所感激的人或事（关注自己生活中发生的美好的事情上）<br>你感激的三件事是什么，我很感谢谁，描述这个人的特点的三个品质，此人在什么时候展现出了这些品质。</p><h1 id="决策日记🤔"><a href="#决策日记🤔" class="headerlink" title="决策日记🤔"></a>决策日记🤔</h1><p>1、思考：<br>（1）你应该做什么？<br>（2）你想做什么决定？<br>（3）此时此地你应该采取什么行动？</p><p>以上为内容复制来的</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;为什么要写日记❔️&quot;&gt;&lt;a href=&quot;#为什么要写日记❔️&quot; class=&quot;headerlink&quot; title=&quot;为什么要写日记❔️&quot;&gt;&lt;/a&gt;为什么要写日记❔️&lt;/h1&gt;&lt;p&gt;写日记可以回顾记忆、理解自我思想、改变对待生活的态度。日记是理解自己想法和感受的方式，可以通过问自己问题来审问自己。写日记的三个方式分别是记录当天事情、讲故事和写晨报。通过写日记，可以增加对生活的欣赏和创造力。总结自Ali Abdaal&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的第一篇</title>
-    <link href="https://yuxiangyun.top/2024/02/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/"/>
-    <id>https://yuxiangyun.top/2024/02/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/</id>
-    <published>2024-02-08T07:04:42.000Z</published>
-    <updated>2024-10-26T15:10:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="终于"><a href="#终于" class="headerlink" title="终于"></a>终于</h1><p>折腾了几天，断断续续的终于配置好了我的博客，就让这一篇成为开始吧。应该我能保持一个月至少更新一次吧，此站域名长期不会变化。</p><span id="more"></span>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;终于&quot;&gt;&lt;a href=&quot;#终于&quot; class=&quot;headerlink&quot; title=&quot;终于&quot;&gt;&lt;/a&gt;终于&lt;/h1&gt;&lt;p&gt;折腾了几天，断断续续的终于配置好了我的博客，就让这一篇成为开始吧。应该我能保持一个月至少更新一次吧，此站域名长期不会变化。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="最近的事~" scheme="https://yuxiangyun.top/categories/%E6%9C%80%E8%BF%91%E7%9A%84%E4%BA%8B/"/>
-    
-    
-    <category term="记录" scheme="https://yuxiangyun.top/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://yuxiangyun.top/2023/09/09/hello-world/"/>
-    <id>https://yuxiangyun.top/2023/09/09/hello-world/</id>
-    <published>2023-09-09T14:35:03.000Z</published>
-    <updated>2024-09-18T13:46:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
-    
-    
     
     
   </entry>
