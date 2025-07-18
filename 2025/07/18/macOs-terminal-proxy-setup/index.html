@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>macOS终端代理配置</title>
+  
+  <link rel="canonical" href="https://yuxiangyun.top/2025/07/18/macOs-terminal-proxy-setup/">
+  
+  <meta name="description" content="本文使用AI整理  📌 目的通过 alias 定义快捷命令，快速切换本地终端是否使用代理（适用于 Clash、Shadowrocket、V2Ray 等工具）。  ⚙️ 步骤✅ 1. 打开终端配置文件在终端执行以下命令（任选其一）： vi ~/.zshrc  或 vi ~/.bash_profile">
+  
+  
+  <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+  
+  <meta name="author" content="xiaoyu">
+  
+  
+  
+  <meta property="og:site_name" content="xiaoyu" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="macOS终端代理配置" />
+  
+  <meta property="og:description" content="本文使用AI整理  📌 目的通过 alias 定义快捷命令，快速切换本地终端是否使用代理（适用于 Clash、Shadowrocket、V2Ray 等工具）。  ⚙️ 步骤✅ 1. 打开终端配置文件在终端执行以下命令（任选其一）： vi ~/.zshrc  或 vi ~/.bash_profile">
+  
+  <meta property="og:url" content="https://yuxiangyun.top/2025/07/18/macOs-terminal-proxy-setup/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="macOS终端代理配置">
+  
+  <meta name="twitter:description" content="本文使用AI整理  📌 目的通过 alias 定义快捷命令，快速切换本地终端是否使用代理（适用于 Clash、Shadowrocket、V2Ray 等工具）。  ⚙️ 步骤✅ 1. 打开终端配置文件在终端执行以下命令（任选其一）： vi ~/.zshrc  或 vi ~/.bash_profile">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://yuxiangyun.top/2025/07/18/macOs-terminal-proxy-setup/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/aquarius.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="xiaoyu" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">👻</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>⚡️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      yu
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+          
+          <a href="/links" class="ml">Friends</a>
+          
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>macOS终端代理配置</h2>
+
+  <blockquote>
+<p>本文使用AI整理</p>
+</blockquote>
+<h2 id="📌-目的"><a href="#📌-目的" class="headerlink" title="📌 目的"></a>📌 目的</h2><p>通过 <code>alias</code> 定义快捷命令，快速切换本地终端是否使用代理（适用于 Clash、Shadowrocket、V2Ray 等工具）。</p>
+<hr>
+<h2 id="⚙️-步骤"><a href="#⚙️-步骤" class="headerlink" title="⚙️ 步骤"></a>⚙️ 步骤</h2><h3 id="✅-1-打开终端配置文件"><a href="#✅-1-打开终端配置文件" class="headerlink" title="✅ 1. 打开终端配置文件"></a>✅ 1. 打开终端配置文件</h3><p>在终端执行以下命令（任选其一）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vi</span> ~/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vi</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>macOS 默认 shell 是 <code>zsh</code>，所以推荐使用 <code>~/.zshrc</code>。</p>
+</blockquote>
+<hr>
+<h3 id="✅-2-添加代理快捷命令"><a href="#✅-2-添加代理快捷命令" class="headerlink" title="✅ 2. 添加代理快捷命令"></a>✅ 2. 添加代理快捷命令</h3><p>按 <code>i</code> 键进入插入模式，把下面的内容复制进去：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">proxy</span><span class="token operator">=</span><span class="token string">"
+    export http_proxy=socks5://127.0.0.1:7890;
+    export https_proxy=socks5://127.0.0.1:7890;
+    export all_proxy=socks5://127.0.0.1:7890;
+    export HTTP_PROXY=socks5://127.0.0.1:7890;
+    export HTTPS_PROXY=socks5://127.0.0.1:7890;
+    export ALL_PROXY=socks5://127.0.0.1:7890;"</span>
+
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">unproxy</span><span class="token operator">=</span><span class="token string">"
+    unset http_proxy;
+    unset https_proxy;
+    unset all_proxy;
+    unset HTTP_PROXY;
+    unset HTTPS_PROXY;
+    unset ALL_PROXY;"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h3 id="✅-3-保存并退出"><a href="#✅-3-保存并退出" class="headerlink" title="✅ 3. 保存并退出"></a>✅ 3. 保存并退出</h3><p>按下 <code>ESC</code> 键，输入 <code>:wq!</code> 并回车，保存并退出编辑器。</p>
+<hr>
+<h3 id="✅-4-让配置生效"><a href="#✅-4-让配置生效" class="headerlink" title="✅ 4. 让配置生效"></a>✅ 4. 让配置生效</h3><p>在终端执行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<hr>
+<h3 id="✅-5-开启关闭代理"><a href="#✅-5-开启关闭代理" class="headerlink" title="✅ 5. 开启关闭代理"></a>✅ 5. 开启关闭代理</h3><h4 id="▶️-开启代理："><a href="#▶️-开启代理：" class="headerlink" title="▶️ 开启代理："></a>▶️ 开启代理：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">proxy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="▶️-关闭代理："><a href="#▶️-关闭代理：" class="headerlink" title="▶️ 关闭代理："></a>▶️ 关闭代理：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">unproxy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<hr>
+<h2 id="🔑-常见问题"><a href="#🔑-常见问题" class="headerlink" title="🔑 常见问题"></a>🔑 常见问题</h2><ul>
+<li><code>127.0.0.1:7890</code> 是 Clash 等代理软件默认的 <code>socks5</code> 端口，可根据实际情况修改。</li>
+<li>如果提示 <code>curl: (7) Failed to connect</code>，请检查代理软件是否开启。</li>
+<li>每次修改 <code>~/.zshrc</code> 后，都需要执行 <code>source ~/.zshrc</code> 让修改生效。</li>
+</ul>
+<hr>
+<h2 id="🗂️-附：命令说明"><a href="#🗂️-附：命令说明" class="headerlink" title="🗂️ 附：命令说明"></a>🗂️ 附：命令说明</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>proxy</code></td>
+<td>开启代理</td>
+</tr>
+<tr>
+<td><code>unproxy</code></td>
+<td>关闭代理</td>
+</tr>
+<tr>
+<td><code>source ~/.zshrc</code></td>
+<td>让配置文件修改立即生效</td>
+</tr>
+</tbody></table>
+<hr>
+
+  <p> — 2025年7月18日</p>
+  
+
+
+        </div>
+
+        <div class="row mt-2">
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
