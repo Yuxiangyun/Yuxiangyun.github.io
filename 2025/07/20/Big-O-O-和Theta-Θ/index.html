@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - xiaoyu</title>
+  <title>Big-O(O) 和 Theta(Θ)</title>
   
-  <link rel="canonical" href="https://yuxiangyun.top/archives/">
+  <link rel="canonical" href="https://yuxiangyun.top/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/">
   
-  <meta name="description" content="这里是Yu的个人博客站点">
+  <meta name="description" content="本文使用AI整理  📌 什么是 Θ（Theta）？ Θ(f(n)) 表示算法的运行时间在输入趋近于无穷时，正好是 f(n) 的增长速度。 它是一个紧确界（tight bound），代表了算法真实的增长行为。 同时具备： 上界：不会比 f(n) 更差； 下界：不会比 f(n) 更好。     📊 ">
   
   
   <meta name="keywords" content="博客 喻祥云 yuxiangyun">
@@ -23,28 +23,24 @@
   <meta name="author" content="xiaoyu">
   
   
-  <meta property="og:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
-  
   
   <meta property="og:site_name" content="xiaoyu" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - xiaoyu" />
+  <meta property="og:title" content="Big-O(O) 和 Theta(Θ)" />
   
-  <meta property="og:description" content="这里是Yu的个人博客站点">
+  <meta property="og:description" content="本文使用AI整理  📌 什么是 Θ（Theta）？ Θ(f(n)) 表示算法的运行时间在输入趋近于无穷时，正好是 f(n) 的增长速度。 它是一个紧确界（tight bound），代表了算法真实的增长行为。 同时具备： 上界：不会比 f(n) 更差； 下界：不会比 f(n) 更好。     📊 ">
   
-  <meta property="og:url" content="https://yuxiangyun.top/archives/" />
+  <meta property="og:url" content="https://yuxiangyun.top/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - xiaoyu">
+  <meta name="twitter:title" content="Big-O(O) 和 Theta(Θ)">
   
-  <meta name="twitter:description" content="这里是Yu的个人博客站点">
-  
-  
-  
-  <meta name="twitter:image" content="https://yuxiangyun.top/images/thumbnail.jpg">
+  <meta name="twitter:description" content="本文使用AI整理  📌 什么是 Θ（Theta）？ Θ(f(n)) 表示算法的运行时间在输入趋近于无穷时，正好是 f(n) 的增长速度。 它是一个紧确界（tight bound），代表了算法真实的增长行为。 同时具备： 上界：不会比 f(n) 更差； 下界：不会比 f(n) 更好。     📊 ">
   
   
-  <meta name="twitter:url" content="https://yuxiangyun.top/archives/" />
+  
+  
+  <meta name="twitter:url" content="https://yuxiangyun.top/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -200,128 +196,129 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>Big-O(O) 和 Theta(Θ)</h2>
 
+  <blockquote>
+<p>本文使用AI整理</p>
+</blockquote>
+<h2 id="📌-什么是-Θ（Theta）？"><a href="#📌-什么是-Θ（Theta）？" class="headerlink" title="📌 什么是 Θ（Theta）？"></a>📌 什么是 Θ（Theta）？</h2><ul>
+<li>Θ(f(n)) 表示<strong>算法的运行时间在输入趋近于无穷时，正好是 f(n) 的增长速度</strong>。</li>
+<li>它是一个<strong>紧确界（tight bound）</strong>，代表了算法真实的增长行为。</li>
+<li>同时具备：<ul>
+<li><strong>上界</strong>：不会比 f(n) 更差；</li>
+<li><strong>下界</strong>：不会比 f(n) 更好。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="📊-BST（Binary-Search-Tree）高度复杂度比较"><a href="#📊-BST（Binary-Search-Tree）高度复杂度比较" class="headerlink" title="📊 BST（Binary Search Tree）高度复杂度比较"></a>📊 BST（Binary Search Tree）高度复杂度比较</h2><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>表达式</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最好情况</td>
+<td>Θ(log N)</td>
+<td>完美平衡，查找操作如二分查找</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td>Θ(N)</td>
+<td>极度不平衡，如退化为链表</td>
+</tr>
+<tr>
+<td>泛泛估计</td>
+<td>O(N) 或 O(N²)</td>
+<td>不够具体，容易误解真实情况</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="⚠️-容易混淆的复杂度符号对比"><a href="#⚠️-容易混淆的复杂度符号对比" class="headerlink" title="⚠️ 容易混淆的复杂度符号对比"></a>⚠️ 容易混淆的复杂度符号对比</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>精确性</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(f(n))</td>
+<td>最多是…</td>
+<td>上界</td>
+<td>O(n) ➜ 可能更快（比如 log n）</td>
+</tr>
+<tr>
+<td>Ω(f(n))</td>
+<td>最少是…</td>
+<td>下界</td>
+<td>Ω(n) ➜ 至少是线性</td>
+</tr>
+<tr>
+<td>Θ(f(n))</td>
+<td>恰好是…</td>
+<td>上+下</td>
+<td>Θ(n) ➜ 正好线性，不多不少</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📘-小技巧助记口诀"><a href="#📘-小技巧助记口诀" class="headerlink" title="📘 小技巧助记口诀"></a>📘 小技巧助记口诀</h2><blockquote>
+<p>✅ O 是不会比它更坏<br>✅ Ω 是不会比它更好<br>✅ Θ 是正好那么好也正好那么坏</p>
+</blockquote>
+<hr>
+<h2 id="💡-常见误区"><a href="#💡-常见误区" class="headerlink" title="💡 常见误区"></a>💡 常见误区</h2><ol>
+<li><p><strong>误以为 O(n) 就是实际复杂度</strong></p>
+<ul>
+<li>❌ O(n) 只是上界，实际可能更快</li>
+<li>✅ 用 Θ(n) 更准确表达“就是线性”</li>
+</ul>
+</li>
+<li><p><strong>以为 worst-case 就等于 O()</strong></p>
+<ul>
+<li>❌ O 只是上界</li>
+<li>✅ worst-case 应具体分析后用 Θ</li>
+</ul>
+</li>
+<li><p><strong>误以为 O(log N) 和 Θ(log N) 一样</strong></p>
+<ul>
+<li>❌ O(log N) 可能是 O(1)</li>
+<li>✅ Θ(log N) 才是确切对数增长</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="✅-实例巩固：BST-查找复杂度"><a href="#✅-实例巩固：BST-查找复杂度" class="headerlink" title="✅ 实例巩固：BST 查找复杂度"></a>✅ 实例巩固：BST 查找复杂度</h2><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>查找复杂度</th>
+<th>用哪个符号？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>完美平衡</td>
+<td>Θ(log N)</td>
+<td>最优、精确</td>
+</tr>
+<tr>
+<td>退化链表</td>
+<td>Θ(N)</td>
+<td>最坏、精确</td>
+</tr>
+<tr>
+<td>未知结构</td>
+<td>O(N)</td>
+<td>上界，保守估计</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
 
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年7月23日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/07/23/%E6%9D%A5%E7%82%B9%E9%B8%A1%E6%B1%A4/" class="">
-            
-              来点鸡汤
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年7月20日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/" class="">
-            
-              Big-O(O) 和 Theta(Θ)
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年7月18日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/07/18/macOs-terminal-proxy-setup/" class="">
-            
-              macOS终端代理配置
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年7月17日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/07/17/Deque/" class="">
-            
-              Deque
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年6月23日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/06/23/story/" class="">
-            
-              《退件：请寄回发件人》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2025年6月17日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2025/06/17/bruteforce/" class="">
-            
-              BruteForce算法
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2024年10月15日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2024/10/15/cppnote/" class="">
-            
-              CPP笔记
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p> — 2025年7月20日</p>
+  
 
 
         </div>

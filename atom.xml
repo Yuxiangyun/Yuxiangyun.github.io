@@ -6,7 +6,7 @@
   <link href="https://yuxiangyun.top/atom.xml" rel="self"/>
   
   <link href="https://yuxiangyun.top/"/>
-  <updated>2025-07-18T02:35:24.187Z</updated>
+  <updated>2025-07-23T04:49:21.920Z</updated>
   <id>https://yuxiangyun.top/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>来点鸡汤</title>
+    <link href="https://yuxiangyun.top/2025/07/23/%E6%9D%A5%E7%82%B9%E9%B8%A1%E6%B1%A4/"/>
+    <id>https://yuxiangyun.top/2025/07/23/%E6%9D%A5%E7%82%B9%E9%B8%A1%E6%B1%A4/</id>
+    <published>2025-07-23T04:45:20.000Z</published>
+    <updated>2025-07-23T04:49:21.920Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>I will say tho, at the end of the day, no matter how valid our concerns&#x2F;experiences are, people will always see it as “just making excuses.” Shits tough out here, but at the end of the day all we can do is keep struggling. Just remember they want you to give up. Every day spent in the library, every hwk completed, every hour of studying is a small victory. No matter how long it takes, we will come out of this. We owe it to ourselves&#x2F;our families&#x2F;our countries. We just gotta stay strong and keep the faith.<br><a href="https://www.reddit.com/r/berkeley/comments/rrn14k/comment/hqhtgup/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button">原文链接</a></p></blockquote><p>我还是想说，归根结底，不管我们的顾虑和经历多么真实，总会有人觉得这只是借口。外面的世界真的很难熬，但到头来我们能做的就是咬牙坚持下去。要记住，总有人希望你放弃。每一次在图书馆熬的夜、每一份写完的作业、每一个小时的学习，都是小小的胜利。不管要花多长时间，我们终究会熬过去。我们是为了自己、为了家人、也为了我们的国家，才不能轻易倒下。只要坚持下去，保持信念，我们一定能挺过来。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;I will say tho, at the end of the day, no matter how valid our concerns&amp;#x2F;experiences are, people will always see it as “</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Big-O(O) 和 Theta(Θ)</title>
+    <link href="https://yuxiangyun.top/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/"/>
+    <id>https://yuxiangyun.top/2025/07/20/Big-O-O-%E5%92%8CTheta-%CE%98/</id>
+    <published>2025-07-20T06:02:10.000Z</published>
+    <updated>2025-07-23T04:46:36.718Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文使用AI整理</p></blockquote><h2 id="📌-什么是-Θ（Theta）？"><a href="#📌-什么是-Θ（Theta）？" class="headerlink" title="📌 什么是 Θ（Theta）？"></a>📌 什么是 Θ（Theta）？</h2><ul><li>Θ(f(n)) 表示<strong>算法的运行时间在输入趋近于无穷时，正好是 f(n) 的增长速度</strong>。</li><li>它是一个<strong>紧确界（tight bound）</strong>，代表了算法真实的增长行为。</li><li>同时具备：<ul><li><strong>上界</strong>：不会比 f(n) 更差；</li><li><strong>下界</strong>：不会比 f(n) 更好。</li></ul></li></ul><hr><h2 id="📊-BST（Binary-Search-Tree）高度复杂度比较"><a href="#📊-BST（Binary-Search-Tree）高度复杂度比较" class="headerlink" title="📊 BST（Binary Search Tree）高度复杂度比较"></a>📊 BST（Binary Search Tree）高度复杂度比较</h2><table><thead><tr><th>情况</th><th>表达式</th><th>含义说明</th></tr></thead><tbody><tr><td>最好情况</td><td>Θ(log N)</td><td>完美平衡，查找操作如二分查找</td></tr><tr><td>最坏情况</td><td>Θ(N)</td><td>极度不平衡，如退化为链表</td></tr><tr><td>泛泛估计</td><td>O(N) 或 O(N²)</td><td>不够具体，容易误解真实情况</td></tr></tbody></table><hr><h2 id="⚠️-容易混淆的复杂度符号对比"><a href="#⚠️-容易混淆的复杂度符号对比" class="headerlink" title="⚠️ 容易混淆的复杂度符号对比"></a>⚠️ 容易混淆的复杂度符号对比</h2><table><thead><tr><th>符号</th><th>含义</th><th>精确性</th><th>举例</th></tr></thead><tbody><tr><td>O(f(n))</td><td>最多是…</td><td>上界</td><td>O(n) ➜ 可能更快（比如 log n）</td></tr><tr><td>Ω(f(n))</td><td>最少是…</td><td>下界</td><td>Ω(n) ➜ 至少是线性</td></tr><tr><td>Θ(f(n))</td><td>恰好是…</td><td>上+下</td><td>Θ(n) ➜ 正好线性，不多不少</td></tr></tbody></table><hr><h2 id="📘-小技巧助记口诀"><a href="#📘-小技巧助记口诀" class="headerlink" title="📘 小技巧助记口诀"></a>📘 小技巧助记口诀</h2><blockquote><p>✅ O 是不会比它更坏<br>✅ Ω 是不会比它更好<br>✅ Θ 是正好那么好也正好那么坏</p></blockquote><hr><h2 id="💡-常见误区"><a href="#💡-常见误区" class="headerlink" title="💡 常见误区"></a>💡 常见误区</h2><ol><li><p><strong>误以为 O(n) 就是实际复杂度</strong></p><ul><li>❌ O(n) 只是上界，实际可能更快</li><li>✅ 用 Θ(n) 更准确表达“就是线性”</li></ul></li><li><p><strong>以为 worst-case 就等于 O()</strong></p><ul><li>❌ O 只是上界</li><li>✅ worst-case 应具体分析后用 Θ</li></ul></li><li><p><strong>误以为 O(log N) 和 Θ(log N) 一样</strong></p><ul><li>❌ O(log N) 可能是 O(1)</li><li>✅ Θ(log N) 才是确切对数增长</li></ul></li></ol><hr><h2 id="✅-实例巩固：BST-查找复杂度"><a href="#✅-实例巩固：BST-查找复杂度" class="headerlink" title="✅ 实例巩固：BST 查找复杂度"></a>✅ 实例巩固：BST 查找复杂度</h2><table><thead><tr><th>情况</th><th>查找复杂度</th><th>用哪个符号？</th></tr></thead><tbody><tr><td>完美平衡</td><td>Θ(log N)</td><td>最优、精确</td></tr><tr><td>退化链表</td><td>Θ(N)</td><td>最坏、精确</td></tr><tr><td>未知结构</td><td>O(N)</td><td>上界，保守估计</td></tr></tbody></table><hr><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文使用AI整理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;📌-什么是-Θ（Theta）？&quot;&gt;&lt;a href=&quot;#📌-什么是-Θ（Theta）？&quot; class=&quot;headerlink&quot; title=&quot;📌 什么是 Θ（Theta）？&quot;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>macOS终端代理配置</title>
