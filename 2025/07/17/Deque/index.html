@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiaoyu">
+
+
+    <meta name="subtitle" content="Stay Hungry, Stay Foolish">
+
+
+    <meta name="description" content="这里是Yu的个人博客站点">
+
+
+    <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+
+
+
+
+<title>Deque | xiaoyu</title>
+
+
+
+    <link rel="icon" href="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/aquarius.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 8.1.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            <img class="logo-img" src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/2025blog/meta-image/Coke%20Icon%20128.png" alt="logo_image">
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">主页</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">博客</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">归档</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/links/">友情链接</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Deque
+            
+            
+        </div>
+        <span class="post-date">
+            7月 17, 2025
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h2 id="什么是Deque"><a href="#什么是Deque" class="headerlink" title="什么是Deque"></a>什么是<code>Deque</code></h2><p>Deque（Double Ended Queue）就是 双端队列，特点是：</p>
+<ul>
+<li>可以在两端插入元素（头插、尾插）。</li>
+<li>可以在两端删除元素（头删、尾删）。<br>用 <code>双向链表</code>（Doubly Linked List） 来实现 Deque，原因是：</li>
+<li>双向链表支持在任意位置快速插入和删除，不需要整体移动元素。</li>
+<li>相比数组，链表在 Deque 场景下更高效（如果只关心两端操作）。</li>
+</ul>
+<p>此外还可基于<code>Array</code>进行实现</p>
+<hr>
+<h2 id="实现核心：Node节点和哨兵节点"><a href="#实现核心：Node节点和哨兵节点" class="headerlink" title="实现核心：Node节点和哨兵节点"></a>实现核心：Node节点和哨兵节点</h2><h3 id="1-Node节点"><a href="#1-Node节点" class="headerlink" title="1.Node节点"></a>1.<code>Node</code>节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    T item;</span><br><span class="line">    Node next;</span><br><span class="line">    Node prev;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>item</code>：保存实际元素。</p>
+</li>
+<li><p><code>next</code>：指向下一个节点。</p>
+</li>
+<li><p><code>prev</code>：指向上一个节点。</p>
+</li>
+</ul>
+<h3 id="2-Sentinel哨兵节点"><a href="#2-Sentinel哨兵节点" class="headerlink" title="2.Sentinel哨兵节点"></a>2.<code>Sentinel</code>哨兵节点</h3><ul>
+<li><p>哨兵（sentinel）本身不存数据（item&#x3D;null）。</p>
+</li>
+<li><p>它的 next 指向第一个元素，prev 指向最后一个元素。</p>
+</li>
+<li><p>当链表是空时：sentinel.next &#x3D;&#x3D; sentinel 且 sentinel.prev &#x3D;&#x3D; sentinel。</p>
+</li>
+<li><p>这样可以避免对头插、尾插写特殊判断，因为哨兵把链表首尾“连起来”了。</p>
+</li>
+</ul>
+<hr>
+<h2 id="插入到头节点"><a href="#插入到头节点" class="headerlink" title="插入到头节点"></a>插入到头节点</h2><h3 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h3><p>假设：</p>
+<p><code>sentinel</code> 是哨兵，不存实际数据。</p>
+<ul>
+<li>当前链表：</li>
+<li><code>sentinel &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></li>
+</ul>
+<p>此时 <code>sentinel.next</code> 是 <code>A</code>，<code>sentinel.prev</code> 是 <code>C</code>。</p>
+<h3 id="2-现在要把-X-插到最前面，也就是放到-A-前面。"><a href="#2-现在要把-X-插到最前面，也就是放到-A-前面。" class="headerlink" title="2.现在要把 X 插到最前面，也就是放到 A 前面。"></a>2.现在要把 <code>X</code> 插到最前面，也就是放到 <code>A</code> 前面。</h3><p>所以插入后应该是：<br><code>sentinel &lt;-&gt; X &lt;-&gt; A &lt;-&gt; B &lt;-&gt; C &lt;-&gt; sentinel</code></p>
+<h3 id="3-执行的逻辑"><a href="#3-执行的逻辑" class="headerlink" title="3.执行的逻辑"></a>3.执行的逻辑</h3><p>✅ <code>newNode.prev = sentinel</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>新节点 X 的 prev 指针要指向 sentinel。</li>
+<li>因为 X 是新的第一个元素，它前面就是 sentinel。</li>
+</ul>
+<p>✅ <code>newNode.next = sentinel.next</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>新节点 X 的 next 指针要指向原来的第一个节点（就是 A）。</li>
+<li>因为 X 插在最前面，它后面就是原来的第一个节点。</li>
+</ul>
+<p>✅ <code>sentinel.next.prev = newNode</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>原来的第一个节点 A 的 prev 指针，要改成指向 X。</li>
+<li>因为 A 的前驱变成了 X（之前是 sentinel）。</li>
+</ul>
+<p>✅ <code>sentinel.next = newNode</code>;</p>
+<p>意思是：</p>
+<ul>
+<li>sentinel 的 next 指针要指向 X。</li>
+<li>因为现在 X 是新的第一个节点。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(T x)</span> &#123;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(x, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    newNode.prev =  sentinel;</span><br><span class="line">    newNode.next = sentinel.next;</span><br><span class="line">    sentinel.next.prev = newNode;</span><br><span class="line">    sentinel.next = newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2025/07/18/macOs-terminal-proxy-setup/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2025/04/07/Recentevent/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                Made with ❤️ in Changde &amp; Changsha
+                <br>
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

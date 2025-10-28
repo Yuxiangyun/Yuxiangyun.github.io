@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiaoyu">
+
+
+    <meta name="subtitle" content="Stay Hungry, Stay Foolish">
+
+
+    <meta name="description" content="这里是Yu的个人博客站点">
+
+
+    <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+
+
+
+
+<title>macOS终端代理配置 | xiaoyu</title>
+
+
+
+    <link rel="icon" href="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/aquarius.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 8.1.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            <img class="logo-img" src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/2025blog/meta-image/Coke%20Icon%20128.png" alt="logo_image">
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">主页</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">博客</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">归档</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/links/">友情链接</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                macOS终端代理配置
+            
+            
+        </div>
+        <span class="post-date">
+            7月 18, 2025
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <blockquote>
+<p>本文使用AI整理</p>
+</blockquote>
+<h2 id="📌-目的"><a href="#📌-目的" class="headerlink" title="📌 目的"></a>📌 目的</h2><p>通过 <code>alias</code> 定义快捷命令，快速切换本地终端是否使用代理（适用于 Clash、Shadowrocket、V2Ray 等工具）。</p>
+<hr>
+<h2 id="⚙️-步骤"><a href="#⚙️-步骤" class="headerlink" title="⚙️ 步骤"></a>⚙️ 步骤</h2><h3 id="✅-1-打开终端配置文件"><a href="#✅-1-打开终端配置文件" class="headerlink" title="✅ 1. 打开终端配置文件"></a>✅ 1. 打开终端配置文件</h3><p>在终端执行以下命令（任选其一）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>macOS 默认 shell 是 <code>zsh</code>，所以推荐使用 <code>~/.zshrc</code>。</p>
+</blockquote>
+<hr>
+<h3 id="✅-2-添加代理快捷命令"><a href="#✅-2-添加代理快捷命令" class="headerlink" title="✅ 2. 添加代理快捷命令"></a>✅ 2. 添加代理快捷命令</h3><p>按 <code>i</code> 键进入插入模式，把下面的内容复制进去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> proxy=<span class="string">&quot;</span></span><br><span class="line"><span class="string">    export http_proxy=socks5://127.0.0.1:7890;</span></span><br><span class="line"><span class="string">    export https_proxy=socks5://127.0.0.1:7890;</span></span><br><span class="line"><span class="string">    export all_proxy=socks5://127.0.0.1:7890;</span></span><br><span class="line"><span class="string">    export HTTP_PROXY=socks5://127.0.0.1:7890;</span></span><br><span class="line"><span class="string">    export HTTPS_PROXY=socks5://127.0.0.1:7890;</span></span><br><span class="line"><span class="string">    export ALL_PROXY=socks5://127.0.0.1:7890;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> unproxy=<span class="string">&quot;</span></span><br><span class="line"><span class="string">    unset http_proxy;</span></span><br><span class="line"><span class="string">    unset https_proxy;</span></span><br><span class="line"><span class="string">    unset all_proxy;</span></span><br><span class="line"><span class="string">    unset HTTP_PROXY;</span></span><br><span class="line"><span class="string">    unset HTTPS_PROXY;</span></span><br><span class="line"><span class="string">    unset ALL_PROXY;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-3-保存并退出"><a href="#✅-3-保存并退出" class="headerlink" title="✅ 3. 保存并退出"></a>✅ 3. 保存并退出</h3><p>按下 <code>ESC</code> 键，输入 <code>:wq!</code> 并回车，保存并退出编辑器。</p>
+<hr>
+<h3 id="✅-4-让配置生效"><a href="#✅-4-让配置生效" class="headerlink" title="✅ 4. 让配置生效"></a>✅ 4. 让配置生效</h3><p>在终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-5-开启关闭代理"><a href="#✅-5-开启关闭代理" class="headerlink" title="✅ 5. 开启关闭代理"></a>✅ 5. 开启关闭代理</h3><h4 id="▶️-开启代理："><a href="#▶️-开启代理：" class="headerlink" title="▶️ 开启代理："></a>▶️ 开启代理：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy</span><br></pre></td></tr></table></figure>
+
+<h4 id="▶️-关闭代理："><a href="#▶️-关闭代理：" class="headerlink" title="▶️ 关闭代理："></a>▶️ 关闭代理：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unproxy</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🔑-常见问题"><a href="#🔑-常见问题" class="headerlink" title="🔑 常见问题"></a>🔑 常见问题</h2><ul>
+<li><code>127.0.0.1:7890</code> 是 Clash 等代理软件默认的 <code>socks5</code> 端口，可根据实际情况修改。</li>
+<li>如果提示 <code>curl: (7) Failed to connect</code>，请检查代理软件是否开启。</li>
+<li>每次修改 <code>~/.zshrc</code> 后，都需要执行 <code>source ~/.zshrc</code> 让修改生效。</li>
+</ul>
+<hr>
+<h2 id="🗂️-附：命令说明"><a href="#🗂️-附：命令说明" class="headerlink" title="🗂️ 附：命令说明"></a>🗂️ 附：命令说明</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>proxy</code></td>
+<td>开启代理</td>
+</tr>
+<tr>
+<td><code>unproxy</code></td>
+<td>关闭代理</td>
+</tr>
+<tr>
+<td><code>source ~/.zshrc</code></td>
+<td>让配置文件修改立即生效</td>
+</tr>
+</tbody></table>
+<hr>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2025/07/17/Deque/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                Made with ❤️ in Changde &amp; Changsha
+                <br>
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

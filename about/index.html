@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiaoyu">
+
+
+    <meta name="subtitle" content="Stay Hungry, Stay Foolish">
+
+
+    <meta name="description" content="这里是Yu的个人博客站点">
+
+
+    <meta name="keywords" content="博客 喻祥云 yuxiangyun">
+
+
+
+
+<title>关于我 | xiaoyu</title>
+
+
+
+    <link rel="icon" href="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/image/aquarius.png">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 8.1.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            <img class="logo-img" src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/2025blog/meta-image/Coke%20Icon%20128.png" alt="logo_image">
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">主页</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">博客</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">归档</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/links/">友情链接</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="/js/menu.js"></script>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="post-title">
+            
+            
+                关于我
+            
+            
+        </div>
+    </div>
+    <div class="h-line-primary"></div>
+</div>
+    <div class="post-content">
+    <div id="typewriter">
+  <span id="typewriter-text"></span><span id="typewriter-cursor">|</span>
+</div>
+
+<script>
+const texts = [
+  "软件工程本科生💻",
+  "早八，每天爬五楼🥱有点累。",
+  "爱美食🍛，不挑食🥬最爱空心菜。",
+  "好好学习，真不能天天偷懒了😉。"
+
+];
+let textIndex = 0;
+let charIndex = 0;
+let typing = true;
+
+const textElement = document.getElementById('typewriter-text');
+const cursorElement = document.getElementById('typewriter-cursor');
+
+function type() {
+  if (typing) {
+    if (charIndex < texts[textIndex].length) {
+      textElement.textContent += texts[textIndex][charIndex];
+      charIndex++;
+      setTimeout(type, 100);
+    } else {
+      typing = false;
+      setTimeout(erase, 1500);
+    }
+  }
+}
+
+function erase() {
+  if (!typing) {
+    if (charIndex > 0) {
+      textElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, 50);
+    } else {
+      typing = true;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(type, 500);
+    }
+  }
+}
+
+// 光标闪烁
+setInterval(() => {
+  cursorElement.style.visibility = cursorElement.style.visibility === 'hidden' ? 'visible' : 'hidden';
+}, 500);
+
+type();
+</script>
+
+<style>
+#typewriter {
+  font-size: 2.0em;
+  font-family: 'Courier New', Courier, monospace;
+  display: inline-block;
+}
+#typewriter-cursor {
+  font-weight: bold;
+  color:rgb(9, 172, 247);
+  margin-left: 2px;
+  transition: visibility 0.1s;
+}
+</style>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                Made with ❤️ in Changde &amp; Changsha
+                <br>
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
