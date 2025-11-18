@@ -24,7 +24,7 @@
 <div align="center">
   <sub>由 Hexo 强力驱动 · 使用 <a href="https://github.com/gary-Shen/hexo-theme-bear" target="_blank">Bear 主题</a></sub>
 </div>
-</div></section></div><div class="container"><ul class="nav"></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
+</div><div class="comments"><div id="utterances-comments"><div class="comments-loading">评论加载中,欢迎留下评论^ ^</div></div><script src="https://utteranc.es/client.js" repo="Yuxiangyun/Yuxiangyun.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async label="评论"></script></div></section></div><div class="container"><ul class="nav"></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
 <script src="/script/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -36,4 +36,41 @@
 ga('create', 'UA-61220413-1', 'auto');
 ga('send', 'pageview');</script>
 <script src="/script/post.js"></script>
-</body></html>
+<script>(function() {
+  var container = document.getElementById('utterances-comments');
+  if (!container) return;
+  var loadingEl = container.querySelector('.comments-loading');
+  if (!loadingEl) return;
+ 
+  var hidden = false;
+  function hideLoading() {
+    if (hidden) return;
+    hidden = true;
+    loadingEl.classList.add('comments-loading--hidden');
+    container.classList.add('comments-loaded');
+  }
+ 
+  function handleMessage(event) {
+    if (!event || !event.origin) return;
+    if (event.origin.indexOf('utteranc.es') === -1) return;
+    hideLoading();
+    window.removeEventListener('message', handleMessage);
+  }
+ 
+  window.addEventListener('message', handleMessage);
+ 
+  var iframeCheck = setInterval(function() {
+    if (container.querySelector('iframe')) {
+      hideLoading();
+      clearInterval(iframeCheck);
+      window.removeEventListener('message', handleMessage);
+    }
+  }, 500);
+ 
+  // 若 10 秒后仍未加载成功，隐藏提示
+  setTimeout(function() {
+    hideLoading();
+    clearInterval(iframeCheck);
+    window.removeEventListener('message', handleMessage);
+  }, 10000);
+})();</script></body></html>

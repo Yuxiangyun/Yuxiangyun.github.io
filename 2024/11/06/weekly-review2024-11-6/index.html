@@ -18,7 +18,7 @@
 <p>真的好羡慕能够快速恢复精力的的人，但是尔等凡人既然没有这种能力的话，还是老老实实做到早睡早起，不要熬夜吧，不管手头有多重要的事情先放一放，好好睡觉！</p>
 <h1 id="好好学习"><a href="#好好学习" class="headerlink" title="好好学习"></a>好好学习</h1><p>说到这个很惭愧，因为这个星期我旷了两节课。很顺利的旷课经历，大学第一次旷课感觉真的很爽！学校开的高数课，我几乎没听进去一点，真的。现在的我很慌，所以我决心好好补补我的高数课了，争取不要挂科😭。</p>
 <p>兴趣是最好的老师，我对于学习CS还是有挺大兴趣的，希望能够坚持下去吧！我隐隐约约的感觉将来我可能真要靠这个吃饭了。</p>
-</div><div class="tags"></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/11/13/weekly-review2024-11-13/">「周结#3」谁说这天气烂的啊，这天气太棒了。</a></li><li><span>下一篇：</span> <a href="/2024/10/30/weekly-review2024-10-30/">「周结#1」今天是一个值得庆祝的日子。</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
+</div><div class="tags"></div><div class="comments"><div id="utterances-comments"><div class="comments-loading">评论加载中,欢迎留下评论^ ^</div></div><script src="https://utteranc.es/client.js" repo="Yuxiangyun/Yuxiangyun.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async label="评论"></script></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/11/13/weekly-review2024-11-13/">「周结#3」谁说这天气烂的啊，这天气太棒了。</a></li><li><span>下一篇：</span> <a href="/2024/10/30/weekly-review2024-10-30/">「周结#1」今天是一个值得庆祝的日子。</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
 <script src="/script/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -30,4 +30,41 @@
 ga('create', 'UA-61220413-1', 'auto');
 ga('send', 'pageview');</script>
 <script src="/script/post.js"></script>
-</body></html>
+<script>(function() {
+  var container = document.getElementById('utterances-comments');
+  if (!container) return;
+  var loadingEl = container.querySelector('.comments-loading');
+  if (!loadingEl) return;
+ 
+  var hidden = false;
+  function hideLoading() {
+    if (hidden) return;
+    hidden = true;
+    loadingEl.classList.add('comments-loading--hidden');
+    container.classList.add('comments-loaded');
+  }
+ 
+  function handleMessage(event) {
+    if (!event || !event.origin) return;
+    if (event.origin.indexOf('utteranc.es') === -1) return;
+    hideLoading();
+    window.removeEventListener('message', handleMessage);
+  }
+ 
+  window.addEventListener('message', handleMessage);
+ 
+  var iframeCheck = setInterval(function() {
+    if (container.querySelector('iframe')) {
+      hideLoading();
+      clearInterval(iframeCheck);
+      window.removeEventListener('message', handleMessage);
+    }
+  }, 500);
+ 
+  // 若 10 秒后仍未加载成功，隐藏提示
+  setTimeout(function() {
+    hideLoading();
+    clearInterval(iframeCheck);
+    window.removeEventListener('message', handleMessage);
+  }, 10000);
+})();</script></body></html>

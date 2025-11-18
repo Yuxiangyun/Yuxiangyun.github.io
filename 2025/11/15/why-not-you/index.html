@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/styles/site.css">
 <meta name="generator" content="Hexo 8.1.0"></head><body><header class="container" id="header"><div class="header"><div class="header-left"><div class="avatar"><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/2025blog/meta-image/dogtx.jpg"></div><div class="author"><div class="author-name"><a href="/">𝔛ℑ𝔄𝔑𝔊𝔜𝔘𝔑</a></div><div class="about-me">你好~</div></div></div><div class="header-right"><ul class="navigation"><li><a href="/">主页</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li><li><a href="/about">关于</a></li></ul></div><div class="about-me-mask"><div class="about-me-wrap"><div class="about-me__header"><div class="avatar"><img src="https://yublog-image.oss-cn-shenzhen.aliyuncs.com/2025blog/meta-image/dogtx.jpg"></div></div><ul class="socials"><li class="social-item"><span class="label"><img src="/images/socials/github.svg" alt="https://github.com/yuxiangyun"></span><a href="https://github.com/yuxiangyun" target="_blank" rel="noopener" title="https://github.com/yuxiangyun">https://github.com/yuxiangyun</a></li><li class="social-item"><span class="label"><img src="/images/socials/email.svg" alt="3207904833@qq.com"></span><a href="mailto:3207904833@qq.com" target="_blank" rel="noopener" title="3207904833@qq.com">3207904833@qq.com</a></li><li class="social-item"><span class="label"><img src="/images/socials/wechat.svg" alt="-nullsleep"></span><a href="/-nullsleep" title="-nullsleep">-nullsleep</a></li></ul></div></div></div></header><div class="container post"><section class="article"><div class="title">why not you?</div><div class="date">写于 2025年11月15日</div><div class="content"><p>有些事总有人要去做，为什么不是你呢？</p>
 <p>“Build something people want.” — YC (Paul Graham)</p>
-</div><div class="tags"></div></section></div><div class="container"><ul class="nav"><li><span>下一篇：</span> <a href="/2025/11/14/weekly-review2025-11-14/">《这一周》4：最近发生的事儿～</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
+</div><div class="tags"></div><div class="comments"><div id="utterances-comments"><div class="comments-loading">评论加载中,欢迎留下评论^ ^</div></div><script src="https://utteranc.es/client.js" repo="Yuxiangyun/Yuxiangyun.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async label="评论"></script></div></section></div><div class="container"><ul class="nav"><li><span>下一篇：</span> <a href="/2025/11/14/weekly-review2025-11-14/">《这一周》4：最近发生的事儿～</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
 <script src="/script/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -14,4 +14,41 @@
 ga('create', 'UA-61220413-1', 'auto');
 ga('send', 'pageview');</script>
 <script src="/script/post.js"></script>
-</body></html>
+<script>(function() {
+  var container = document.getElementById('utterances-comments');
+  if (!container) return;
+  var loadingEl = container.querySelector('.comments-loading');
+  if (!loadingEl) return;
+ 
+  var hidden = false;
+  function hideLoading() {
+    if (hidden) return;
+    hidden = true;
+    loadingEl.classList.add('comments-loading--hidden');
+    container.classList.add('comments-loaded');
+  }
+ 
+  function handleMessage(event) {
+    if (!event || !event.origin) return;
+    if (event.origin.indexOf('utteranc.es') === -1) return;
+    hideLoading();
+    window.removeEventListener('message', handleMessage);
+  }
+ 
+  window.addEventListener('message', handleMessage);
+ 
+  var iframeCheck = setInterval(function() {
+    if (container.querySelector('iframe')) {
+      hideLoading();
+      clearInterval(iframeCheck);
+      window.removeEventListener('message', handleMessage);
+    }
+  }, 500);
+ 
+  // 若 10 秒后仍未加载成功，隐藏提示
+  setTimeout(function() {
+    hideLoading();
+    clearInterval(iframeCheck);
+    window.removeEventListener('message', handleMessage);
+  }, 10000);
+})();</script></body></html>

@@ -26,7 +26,7 @@
 <p>我以前常常怀疑，把日常的点滴，放在几乎没人来看的网上会不会没有意义，现在我觉得这是ROI十分高的行为。也许我会在每一次生日，每一次重大的时刻的时候去组织文字，把情感固化下来。当我快忘记这些事情的时候，再回头看看曾经的文字，肯定会回味无穷。就像高三时期，我坚持写日记，特别是情感特别需要发泄的时候，虽然现在看来这些事似乎也没那么重要。如果我没有记录下高考时期的我，那么这段记忆肯定会是模糊不清的。</p>
 <p>此外，还有一个不太明显的好处就是，这让我能通过组织文字来反思与庆祝生活中的方方面面，文字是思维的载体，这样能展现我的变化。当然，如果真有人能阅读这些我也会相当开心。</p>
 <h1 id="保持动力"><a href="#保持动力" class="headerlink" title="保持动力"></a>保持动力</h1><p>之所以开了「周结」，最大的原因就是为我设置一个DEADLINE，我是一个很懒的人，做事很喜欢拖沓。但是设置一个时间点应该能让我坚持更新。所以今天值得被记住哈哈哈，🎉！</p>
-</div><div class="tags"></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/11/06/weekly-review2024-11-6/">「周结#2」希望每天都能睡好</a></li><li><span>下一篇：</span> <a href="/2024/10/21/donebetter/">得治治我的拖延症</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
+</div><div class="tags"></div><div class="comments"><div id="utterances-comments"><div class="comments-loading">评论加载中,欢迎留下评论^ ^</div></div><script src="https://utteranc.es/client.js" repo="Yuxiangyun/Yuxiangyun.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async label="评论"></script></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/11/06/weekly-review2024-11-6/">「周结#2」希望每天都能睡好</a></li><li><span>下一篇：</span> <a href="/2024/10/21/donebetter/">得治治我的拖延症</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
 <script src="/script/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -38,4 +38,41 @@
 ga('create', 'UA-61220413-1', 'auto');
 ga('send', 'pageview');</script>
 <script src="/script/post.js"></script>
-</body></html>
+<script>(function() {
+  var container = document.getElementById('utterances-comments');
+  if (!container) return;
+  var loadingEl = container.querySelector('.comments-loading');
+  if (!loadingEl) return;
+ 
+  var hidden = false;
+  function hideLoading() {
+    if (hidden) return;
+    hidden = true;
+    loadingEl.classList.add('comments-loading--hidden');
+    container.classList.add('comments-loaded');
+  }
+ 
+  function handleMessage(event) {
+    if (!event || !event.origin) return;
+    if (event.origin.indexOf('utteranc.es') === -1) return;
+    hideLoading();
+    window.removeEventListener('message', handleMessage);
+  }
+ 
+  window.addEventListener('message', handleMessage);
+ 
+  var iframeCheck = setInterval(function() {
+    if (container.querySelector('iframe')) {
+      hideLoading();
+      clearInterval(iframeCheck);
+      window.removeEventListener('message', handleMessage);
+    }
+  }, 500);
+ 
+  // 若 10 秒后仍未加载成功，隐藏提示
+  setTimeout(function() {
+    hideLoading();
+    clearInterval(iframeCheck);
+    window.removeEventListener('message', handleMessage);
+  }, 10000);
+})();</script></body></html>

@@ -12,7 +12,7 @@
 <h1 id="接受不完美"><a href="#接受不完美" class="headerlink" title="接受不完美"></a>接受不完美</h1><p>存在着一小部分，它们有着非凡的自驱力，可以顺利完成自己规划的事情。但对于资质平庸的我，似乎把追求完美放在首位并不太可靠，因为没有动力，热情来维持行动。</p>
 <p>当我开始做一件事情的时候，那这件事情注定会存在问题，就像世界上没有完美的人，世界上也不会存在完美的事。所以不用担心自己会不会把事情弄得太糟，担心自己会不会没有效率。当我们真正完成了某件事，那它就已经完成了，永远都比还没有行动要好。我们可以不断的改善。</p>
 <h1 id="想做就做！"><a href="#想做就做！" class="headerlink" title="想做就做！"></a>想做就做！</h1><p>最近这两天感觉自己学习效率又降了不少，感觉就像一条正弦曲线有升有降。今天在看Cherno时候看到这个观点，感觉非常的适合我。因为我就是老喜欢拖延，放下正事刷抖音玩游戏。但实际上如果开始做了，那么还是很容易保持专注的。希望接下来能有说干就干的状态吧！</p>
-</div><div class="tags"><a class="tag-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/10/30/weekly-review2024-10-30/">「周结#1」今天是一个值得庆祝的日子。</a></li><li><span>下一篇：</span> <a href="/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/">大学军训</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
+</div><div class="tags"><a class="tag-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></div><div class="comments"><div id="utterances-comments"><div class="comments-loading">评论加载中,欢迎留下评论^ ^</div></div><script src="https://utteranc.es/client.js" repo="Yuxiangyun/Yuxiangyun.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async label="评论"></script></div></section></div><div class="container"><ul class="nav"><li><span>上一篇：</span> <a href="/2024/10/30/weekly-review2024-10-30/">「周结#1」今天是一个值得庆祝的日子。</a></li><li><span>下一篇：</span> <a href="/2024/09/19/%E5%A4%A7%E5%AD%A6%E5%86%9B%E8%AE%AD/">大学军训</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div>
 <script src="/script/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -24,4 +24,41 @@
 ga('create', 'UA-61220413-1', 'auto');
 ga('send', 'pageview');</script>
 <script src="/script/post.js"></script>
-</body></html>
+<script>(function() {
+  var container = document.getElementById('utterances-comments');
+  if (!container) return;
+  var loadingEl = container.querySelector('.comments-loading');
+  if (!loadingEl) return;
+ 
+  var hidden = false;
+  function hideLoading() {
+    if (hidden) return;
+    hidden = true;
+    loadingEl.classList.add('comments-loading--hidden');
+    container.classList.add('comments-loaded');
+  }
+ 
+  function handleMessage(event) {
+    if (!event || !event.origin) return;
+    if (event.origin.indexOf('utteranc.es') === -1) return;
+    hideLoading();
+    window.removeEventListener('message', handleMessage);
+  }
+ 
+  window.addEventListener('message', handleMessage);
+ 
+  var iframeCheck = setInterval(function() {
+    if (container.querySelector('iframe')) {
+      hideLoading();
+      clearInterval(iframeCheck);
+      window.removeEventListener('message', handleMessage);
+    }
+  }, 500);
+ 
+  // 若 10 秒后仍未加载成功，隐藏提示
+  setTimeout(function() {
+    hideLoading();
+    clearInterval(iframeCheck);
+    window.removeEventListener('message', handleMessage);
+  }, 10000);
+})();</script></body></html>
