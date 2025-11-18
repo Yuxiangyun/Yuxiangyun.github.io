@@ -840,6 +840,57 @@ footer a {
 }
 .comments #utterances-comments {
   max-width: 100%;
+  position: relative;
+  min-height: 9.142857142857142rem;
+  -webkit-transition: min-height 0.3s ease;
+  -moz-transition: min-height 0.3s ease;
+  -ms-transition: min-height 0.3s ease;
+  transition: min-height 0.3s ease;
+}
+.comments #utterances-comments.comments-loaded {
+  min-height: 0;
+}
+.comments #utterances-comments .comments-loading {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  -webkit-animation: commentsFade 1.2s ease-in-out infinite;
+  -moz-animation: commentsFade 1.2s ease-in-out infinite;
+  -ms-animation: commentsFade 1.2s ease-in-out infinite;
+  animation: commentsFade 1.2s ease-in-out infinite;
+  opacity: 0.8;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+}
+.comments #utterances-comments .comments-loading.comments-loading--hidden {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -ms-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .comments .utterances {
   max-width: 100%;
@@ -848,6 +899,50 @@ footer a {
 .comments iframe {
   border: none;
   max-width: 100%;
+}
+@-moz-keyframes commentsFade {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+@-webkit-keyframes commentsFade {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+@-o-keyframes commentsFade {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+@keyframes commentsFade {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
 }
 .archives {
   display: -webkit-box;
