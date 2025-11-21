@@ -1046,6 +1046,76 @@ footer a {
   -webkit-line-clamp: 2;
   white-space: normal;
 }
+nav.pagination {
+  margin: 2.5rem 0 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 1rem;
+}
+nav.pagination .pagination__link {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font-weight: 500;
+  color: #333;
+  padding: 0.35rem 0;
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -ms-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+nav.pagination .pagination__link:hover {
+  color: #db4d52;
+}
+nav.pagination .pagination__link--prev:before {
+  content: "←";
+  margin-right: 0.35rem;
+  font-size: 0.9rem;
+}
+nav.pagination .pagination__link--next:after {
+  content: "→";
+  margin-left: 0.35rem;
+  font-size: 0.9rem;
+}
+@media screen and (max-width: 479px) {
+  nav.pagination {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
 .article pre,
 .article .highlight {
   background: #fff;
